@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.yangzhe.learnhandler.HanderMessageActivity;
 import com.example.yangzhe.learnhandler.HandlerActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,12 +19,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.e(TAG,"this is onCreate()!");
         setContentView(R.layout.activity_main);
-        Button btnDialog = (Button)findViewById(R.id.button_show_dialog);
+        Button btnDialog = (Button)findViewById(R.id.buttonShowDialog);
         btnDialog.setOnClickListener(click);
-        Button btnShowDialogActivity = (Button)findViewById(R.id.button_show_dialog_activity);
+        Button btnShowDialogActivity = (Button)findViewById(R.id.buttonShowDialogActivity);
         btnShowDialogActivity.setOnClickListener(click);
-        Button btnGotoHandlerActivity = (Button)findViewById(R.id.button_goto_handleractivity);
+        Button btnGotoHandlerActivity = (Button)findViewById(R.id.buttonGotoHandlerActivity);
         btnGotoHandlerActivity.setOnClickListener(click);
+        Button btnGotoHandlerMessageActivity = (Button)findViewById(R.id.buttonGotoHandlerMessageActivity);
+        btnGotoHandlerMessageActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch(v.getId()){
-                case R.id.button_show_dialog:
+                case R.id.buttonShowDialog:
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setTitle("dialog").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
@@ -42,16 +45,25 @@ public class MainActivity extends AppCompatActivity {
                     AlertDialog alertDialog =  builder.create();
                     alertDialog.show();
                     break;
-                case R.id.button_show_dialog_activity:
+
+                case R.id.buttonShowDialogActivity:
                     Intent intent = new Intent();
                     intent.setClass(MainActivity.this,DialogActivity.class);
                     startActivity(intent);
                     break;
-                case R.id.button_goto_handleractivity:
+
+                case R.id.buttonGotoHandlerActivity:
                     Intent intent2 = new Intent();
                     intent2.setClass(MainActivity.this,HandlerActivity.class);
                     startActivity(intent2);
                     break;
+
+                case R.id.buttonGotoHandlerMessageActivity:
+                    Intent intent3 = new Intent();
+                    intent3.setClass(MainActivity.this, HanderMessageActivity.class);
+                    startActivity(intent3);
+                    break;
+
                 default:
                     break;
             }

@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="show a dialog"
-        android:id="@+id/button_show_dialog"
+        android:id="@+id/buttonShowDialog"
         android:layout_marginTop="106dp"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true" />
@@ -28,17 +28,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Show a dialog activity"
-        android:id="@+id/button_show_dialog_activity"
-        android:layout_below="@+id/button_show_dialog"
+        android:id="@+id/buttonShowDialogActivity"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Goto Handler Activity"
-        android:id="@+id/button_goto_handleractivity"
+        android:id="@+id/buttonGotoHandlerActivity"
         android:layout_marginTop="29dp"
-        android:layout_below="@+id/button_show_dialog_activity"
-        android:layout_alignLeft="@+id/button_show_dialog_activity"
-        android:layout_alignStart="@+id/button_show_dialog_activity" />
+        android:layout_below="@+id/buttonShowDialogActivity"
+        android:layout_alignLeft="@+id/buttonShowDialogActivity"
+        android:layout_alignStart="@+id/buttonShowDialogActivity" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goto Handler Message Activity"
+        android:id="@+id/buttonGotoHandlerMessageActivity"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/buttonGotoHandlerActivity"
+        android:layout_alignLeft="@+id/buttonGotoHandlerActivity"
+        android:layout_alignStart="@+id/buttonGotoHandlerActivity" />
 </RelativeLayout>

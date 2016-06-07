@@ -20,9 +20,9 @@ public class HandlerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handler);
-        btnPostMessage = (Button)findViewById(R.id.button_post_message);
+        btnPostMessage = (Button)findViewById(R.id.buttonPostMessage);
         btnPostMessage.setOnClickListener(click);
-        btnPostDelayMessage = (Button)findViewById(R.id.button_post_delay_message);
+        btnPostDelayMessage = (Button)findViewById(R.id.buttonPostDelayMessage);
         btnPostDelayMessage.setOnClickListener(click);
         textViewShowMessage = (TextView)findViewById(R.id.textViewShowMessage);
     }
@@ -32,7 +32,7 @@ public class HandlerActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.button_post_message:
+                case R.id.buttonPostMessage:
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -46,7 +46,7 @@ public class HandlerActivity extends AppCompatActivity {
                         }
                     }).start();
                     break;
-                case R.id.button_post_delay_message:
+                case R.id.buttonPostDelayMessage:
                     new Thread(new Runnable() {
                         @Override
                         public void run() {

@@ -17,8 +17,9 @@
         </activity>
         <activity
             android:name=".DialogActivity"
-            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar"></activity>
-        <activity android:name="com.example.yangzhe.learnhandler.HandlerActivity"></activity>
+            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar" />
+        <activity android:name="com.example.yangzhe.learnhandler.HandlerActivity" />
+        <activity android:name="com.example.yangzhe.learnhandler.HanderMessageActivity"></activity>
     </application>
 
 </manifest>
