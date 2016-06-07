@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.yangzhe.learnhandler.HandlerActivity;
+
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "LearnActivity";
     @Override
@@ -17,31 +19,44 @@ public class MainActivity extends AppCompatActivity {
         Log.e(TAG,"this is onCreate()!");
         setContentView(R.layout.activity_main);
         Button btnDialog = (Button)findViewById(R.id.button_show_dialog);
-        btnDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("dialog").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                AlertDialog alertDialog =  builder.create();
-                alertDialog.show();
-            }
-        });
-
+        btnDialog.setOnClickListener(click);
         Button btnShowDialogActivity = (Button)findViewById(R.id.button_show_dialog_activity);
-        btnShowDialogActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this,DialogActivity.class);
-                startActivity(intent);
-            }
-        });
+        btnShowDialogActivity.setOnClickListener(click);
+        Button btnGotoHandlerActivity = (Button)findViewById(R.id.button_goto_handleractivity);
+        btnGotoHandlerActivity.setOnClickListener(click);
     }
+
+    private View.OnClickListener click = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            switch(v.getId()){
+                case R.id.button_show_dialog:
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("dialog").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    AlertDialog alertDialog =  builder.create();
+                    alertDialog.show();
+                    break;
+                case R.id.button_show_dialog_activity:
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this,DialogActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.button_goto_handleractivity:
+                    Intent intent2 = new Intent();
+                    intent2.setClass(MainActivity.this,HandlerActivity.class);
+                    startActivity(intent2);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onStop() {

@@ -8,18 +8,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.yangzhe.learnactivity.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.example.yangzhe.learnactivity.DialogActivity"
-            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar">
-        </activity>
+            android:name=".DialogActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar"></activity>
+        <activity android:name="com.example.yangzhe.learnhandler.HandlerActivity"></activity>
     </application>
 
 </manifest>

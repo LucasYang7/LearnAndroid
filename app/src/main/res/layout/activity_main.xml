@@ -31,4 +31,14 @@
         android:id="@+id/button_show_dialog_activity"
         android:layout_below="@+id/button_show_dialog"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goto Handler Activity"
+        android:id="@+id/button_goto_handleractivity"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/button_show_dialog_activity"
+        android:layout_alignLeft="@+id/button_show_dialog_activity"
+        android:layout_alignStart="@+id/button_show_dialog_activity" />
 </RelativeLayout>
