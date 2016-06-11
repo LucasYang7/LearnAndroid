@@ -1,10 +1,9 @@
 package com.example.yangzhe.learnhandler;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,7 +29,7 @@ public class HanderMessageActivity extends AppCompatActivity {
         btnSendEmptyMessageDelay = (Button)findViewById(R.id.buttonSendEmptyMessageDelayed);
         btnSendMessage = (Button)findViewById(R.id.buttonSendMessage);
         //btnSendMessageAtTime = (Button)findViewById(R.id.buttonSendMessageAtTime);
-        btnSendMessageDelay = (Button)findViewById(R.id.buttonSendMessageDelay);
+        btnSendMessageDelay = (Button)findViewById(R.id.buttonSendToTarget);
         txtViewShowMessage = (TextView)findViewById(R.id.textViewShowMessage);
         btnSendEmptyMessage.setOnClickListener(clickListener);
         //btnSendEmptyMessageAtTime.setOnClickListener(clickListener);
@@ -80,14 +79,14 @@ public class HanderMessageActivity extends AppCompatActivity {
                     }).start();
                     break;
 
-                case R.id.buttonSendMessageDelay:
+                case R.id.buttonSendToTarget:
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            Message msg = Message.obtain(handler);
+                            Message msg = Message.obtain(handler2);       // obtain the Message from handler2
                             msg.what = 3;
-                            msg.obj = "This is from buttonSendMessageDelay and use sendToTarget";
-                            msg.sendToTarget();
+                            msg.obj = "This is from handler2 and use sendToTarget() to send Message.";
+                            msg.sendToTarget();         //send message to the specified handler
                         }
                     }
                     ).start();
@@ -113,6 +112,17 @@ public class HanderMessageActivity extends AppCompatActivity {
                 txtViewShowMessage.setText(msg.what + " " + msg.obj.toString());
             }
 
+        }
+    };
+
+    /**
+     * This is another Handler which bind to UI thread
+     * */
+    private Handler handler2 = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            txtViewShowMessage.setText(msg.what + " " + msg.obj.toString());
         }
     };
 
