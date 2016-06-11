@@ -41,12 +41,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Send Message Delay"
-        android:id="@+id/buttonSendMessageDelay"
+        android:text="Send to Target"
+        android:id="@+id/buttonSendToTarget"
+        android:layout_marginTop="52dp"
         android:layout_below="@+id/buttonSendMessage"
-        android:layout_alignRight="@+id/buttonSendEmptyMessage"
-        android:layout_alignEnd="@+id/buttonSendEmptyMessage"
-        android:layout_marginTop="45dp" />
+        android:layout_alignLeft="@+id/buttonSendMessage"
+        android:layout_alignStart="@+id/buttonSendMessage" />
 
     <TextView
         android:layout_width="wrap_content"
