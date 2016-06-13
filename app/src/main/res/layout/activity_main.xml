@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -19,36 +20,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="show a dialog"
-        android:id="@+id/buttonShowDialog"
-        android:layout_marginTop="106dp"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/buttonShowDialog"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Show a dialog activity"
-        android:id="@+id/buttonShowDialogActivity"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/buttonShowDialogActivity"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Goto Handler Activity"
-        android:id="@+id/buttonGotoHandlerActivity"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/buttonShowDialogActivity"
-        android:layout_alignLeft="@+id/buttonShowDialogActivity"
-        android:layout_alignStart="@+id/buttonShowDialogActivity" />
+        android:id="@+id/buttonGotoHandlerActivity"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Goto Handler Message Activity"
-        android:id="@+id/buttonGotoHandlerMessageActivity"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/buttonGotoHandlerActivity"
-        android:layout_alignLeft="@+id/buttonGotoHandlerActivity"
-        android:layout_alignStart="@+id/buttonGotoHandlerActivity" />
-</RelativeLayout>
+        android:id="@+id/buttonGotoHandlerMessageActivity"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goto Fragment Activity"
+        android:id="@+id/buttonGotoFragmentActivity" />
+</LinearLayout>

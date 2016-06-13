@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoHandlerActivity.setOnClickListener(click);
         Button btnGotoHandlerMessageActivity = (Button)findViewById(R.id.buttonGotoHandlerMessageActivity);
         btnGotoHandlerMessageActivity.setOnClickListener(click);
+        Button btnGotoFragmentActivity = (Button)findViewById(R.id.buttonGotoFragmentActivity);
+        btnGotoFragmentActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -62,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent3 = new Intent();
                     intent3.setClass(MainActivity.this, HanderMessageActivity.class);
                     startActivity(intent3);
+                    break;
+
+                case R.id.buttonGotoFragmentActivity:
+                    Intent intent4 = new Intent();
+                    intent4.setClass(MainActivity.this, LearnFragmentActivity.class);
+                    startActivity(intent4);
                     break;
 
                 default:

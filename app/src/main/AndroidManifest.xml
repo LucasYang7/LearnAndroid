@@ -19,7 +19,8 @@
             android:name=".DialogActivity"
             android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar" />
         <activity android:name="com.example.yangzhe.learnhandler.HandlerActivity" />
-        <activity android:name="com.example.yangzhe.learnhandler.HanderMessageActivity"></activity>
+        <activity android:name="com.example.yangzhe.learnhandler.HanderMessageActivity" />
+        <activity android:name=".LearnFragmentActivity"></activity>
     </application>
 
 </manifest>
