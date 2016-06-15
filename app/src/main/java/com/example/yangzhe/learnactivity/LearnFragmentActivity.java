@@ -1,6 +1,7 @@
 package com.example.yangzhe.learnactivity;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.View;
@@ -35,8 +36,10 @@ public class LearnFragmentActivity extends Activity {
             @Override
             public void onClick(View v) {
                 FirstFragment firstFragment = new FirstFragment();
-                getFragmentManager().beginTransaction().replace(R.id.dynamical_fragment_activity_layout,
-                        firstFragment).commit();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.static_fragment_activity_layout,
+                        firstFragment);
+                fragmentTransaction.commit();
             }
         });
 
