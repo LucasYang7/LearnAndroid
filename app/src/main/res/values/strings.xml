@@ -2,9 +2,10 @@
     <string name="app_name">LearnAndroid</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_second_fragment">Hello This is second fragment</string>
-    <string name="hello_first_fragment">Hello This is first fragment</string>
+    <string name="hello_second_fragment">This is second fragment</string>
+    <string name="hello_first_fragment">This is first fragment</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello This is blank fragment</string>
+    <string name="hello_add_fragment">This is a fragment created by add operation</string>
+    <string name="hello_blank_fragment">This is default fragment add in xml file</string>
 </resources>

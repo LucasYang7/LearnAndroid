@@ -11,12 +11,12 @@
     tools:context="com.example.yangzhe.learnactivity.LearnFragmentActivity"
     android:id="@+id/fragment_activity_layout">
 
-    <!--place the fragment in here-->
+    <!--place the static fragment in here-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/fragment_in_activity_layout">
+        android:id="@+id/static_fragment_activity_layout">
         <!-- add a fragment in xml -->
         <fragment
             android:layout_width="wrap_content"
@@ -25,6 +25,15 @@
             android:id="@+id/fragment_blank"
             android:name="com.example.yangzhe.learnfragment.BlankFragment">
         </fragment>
+
+    </LinearLayout>
+
+    <!--place the dynamical fragment in here-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/dynamical_fragment_activity_layout">
 
     </LinearLayout>
 
@@ -40,5 +49,12 @@
         android:layout_height="wrap_content"
         android:text="Show Fragment2"
         android:id="@+id/buttonShowFragment2"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add a new Fragment"
+        android:id="@+id/buttonAddFragment"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>
