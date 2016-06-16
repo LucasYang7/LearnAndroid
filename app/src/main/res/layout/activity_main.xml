@@ -45,4 +45,10 @@
         android:layout_height="wrap_content"
         android:text="Goto Fragment Activity"
         android:id="@+id/buttonGotoFragmentActivity" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goto Image Loader Activity"
+        android:id="@+id/buttonGotoImageLoaderActivity" />
 </LinearLayout>
