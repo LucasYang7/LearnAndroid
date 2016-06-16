@@ -13,7 +13,7 @@ import com.example.yangzhe.learnhandler.HanderMessageActivity;
 import com.example.yangzhe.learnhandler.HandlerActivity;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = "ActivityLifeCycle";
+    public static final String TAG = "MainActivityLifeCycle";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

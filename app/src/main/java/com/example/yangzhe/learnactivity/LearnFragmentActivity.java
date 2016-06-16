@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,9 +14,11 @@ import com.example.yangzhe.learnfragment.SecondFragment;
 
 public class LearnFragmentActivity extends Activity {
 
+    private static String TAG = "LearnFragmentActivityLifeCycle";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(TAG,"this is onCreate()!");
         setContentView(R.layout.activity_learn_fragment);
 
         // add a fragment in java
@@ -52,5 +55,41 @@ public class LearnFragmentActivity extends Activity {
                         secondFragment).commit();
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG,"this is onStop()!");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG,"this is onDestroy()!");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG,"this is onStart()!");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG,"this is onResume()!");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG,"this is onPause()!");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e(TAG,"this is onRestart()!");
     }
 }
