@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.example.yangzhe.learnhandler.HanderMessageActivity;
 import com.example.yangzhe.learnhandler.HandlerActivity;
+import com.example.yangzhe.learnlayout.StaggeredGridLayoutActivity;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivityLifeCycle";
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoFragmentActivity.setOnClickListener(click);
         Button btnGotoImageLoaderActivity = (Button)findViewById(R.id.buttonGotoImageLoaderActivity);
         btnGotoImageLoaderActivity.setOnClickListener(click);
+        Button btnGotoStaggeredGridActivity = (Button)findViewById(R.id.buttonGotoStaggeredGridActivity);
+        btnGotoStaggeredGridActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -51,40 +54,40 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.buttonShowDialogActivity:
-                    Intent intent = new Intent();
-                    intent.setClass(MainActivity.this,DialogActivity.class);
-                    startActivity(intent);
+                    gotoOtherActivity(DialogActivity.class);
                     break;
 
                 case R.id.buttonGotoHandlerActivity:
-                    Intent intent2 = new Intent();
-                    intent2.setClass(MainActivity.this,HandlerActivity.class);
-                    startActivity(intent2);
+                    gotoOtherActivity(HandlerActivity.class);
                     break;
 
                 case R.id.buttonGotoHandlerMessageActivity:
-                    Intent intent3 = new Intent();
-                    intent3.setClass(MainActivity.this, HanderMessageActivity.class);
-                    startActivity(intent3);
+                    gotoOtherActivity(HanderMessageActivity.class);
                     break;
 
                 case R.id.buttonGotoFragmentActivity:
-                    Intent intent4 = new Intent();
-                    intent4.setClass(MainActivity.this, LearnFragmentActivity.class);
-                    startActivity(intent4);
+                    gotoOtherActivity(LearnFragmentActivity.class);
                     break;
 
                 case R.id.buttonGotoImageLoaderActivity:
-                    Intent intent5 = new Intent();
-                    intent5.setClass(MainActivity.this,ImageLoaderActivity.class);
-                    startActivity(intent5);
+                    gotoOtherActivity(ImageLoaderActivity.class);
                     break;
 
+                case R.id.buttonGotoStaggeredGridActivity:
+                    gotoOtherActivity(StaggeredGridLayoutActivity.class);
+                    break;
                 default:
                     break;
             }
         }
     };
+
+    /**
+     * goto other activity
+     * */
+    private void gotoOtherActivity(Class clazz){
+        startActivity(new Intent(MainActivity.this,clazz));
+    }
 
     @Override
     protected void onStop() {

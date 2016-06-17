@@ -25,7 +25,8 @@
         <activity android:name="com.example.yangzhe.learnhandler.HandlerActivity" />
         <activity android:name="com.example.yangzhe.learnhandler.HanderMessageActivity" />
         <activity android:name=".LearnFragmentActivity" />
-        <activity android:name=".ImageLoaderActivity"></activity>
+        <activity android:name=".ImageLoaderActivity" />
+        <activity android:name="com.example.yangzhe.learnlayout.StaggeredGridLayoutActivity"></activity>
     </application>
 
 </manifest>

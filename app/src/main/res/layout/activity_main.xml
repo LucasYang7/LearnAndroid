@@ -51,4 +51,10 @@
         android:layout_height="wrap_content"
         android:text="Goto Image Loader Activity"
         android:id="@+id/buttonGotoImageLoaderActivity" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goto StaggeredGridLayout Activity"
+        android:id="@+id/buttonGotoStaggeredGridActivity" />
 </LinearLayout>
