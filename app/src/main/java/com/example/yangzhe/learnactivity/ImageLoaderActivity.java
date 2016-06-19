@@ -41,8 +41,8 @@ public class ImageLoaderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // display the image from url
-                String url = "http://hbimg.b0.upaiyun.com/3746f97052e9c208da735be3901b45e7a20c0b5f33686-amwwz1_fw658";
-                ImageLoader.getInstance().displayImage(url,imageViewShowImageLoader,options);
+                String uri = "file:///storage/emulated/0/Download/00-24-03-14.jpg";
+                ImageLoader.getInstance().displayImage(uri,imageViewShowImageLoader,options);
             }
         });
 
