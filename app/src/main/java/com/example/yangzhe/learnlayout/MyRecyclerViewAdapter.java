@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.yangzhe.data.AlbumImageData;
 import com.example.yangzhe.learnactivity.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -27,7 +28,7 @@ import java.util.List;
  */
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewHolder> {
 
-    private List<String> itemList;
+    private List<AlbumImageData> itemList;
     private Context context;
     // Here are something about ImageLoader
     // DisplayImageOptions are local for every display task
@@ -44,7 +45,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewHo
             .displayer(new RoundedBitmapDisplayer(20))
             .build();
     */
-    public MyRecyclerViewAdapter(Context context,List<String> itemList){
+    public MyRecyclerViewAdapter(Context context,List<AlbumImageData> itemList){
         this.context = context;
         this.itemList = itemList;
     }
@@ -63,9 +64,13 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewHo
      * */
     @Override
     public void onBindViewHolder(final MyRecyclerViewHolder holder, int position) {
-        String uri = itemList.get(position);
-        Log.e("URI",uri);
+        AlbumImageData albumImageData = itemList.get(position);
+        String uri = albumImageData.getPath();
+        int width = albumImageData.getWidth();       // get the width of original image
+        int height = albumImageData.getHeight();     // get the height of original image
+        Log.e("URI",uri + " " + position);
         holder.textViewInCardView.setText(uri);
+        holder.imageViewCardPicture.setOriginalSize(width,height);   // set the original image's size
         ImageLoader.getInstance().displayImage(uri,holder.imageViewCardPicture);
     }
 

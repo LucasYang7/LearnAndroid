@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 
+import com.example.yangzhe.data.AlbumImageData;
 import com.example.yangzhe.learnactivity.R;
 
 import java.lang.ref.WeakReference;
@@ -21,14 +22,14 @@ import java.util.List;
 public class StaggeredGridLayoutActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private GetPictureHandler getPictureHandler;
-    List<String> listViewItems = new ArrayList<String>();      // store the picture path
+    List<AlbumImageData> listAlbumImageData = new ArrayList<AlbumImageData>();   //store the picture information
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staggered_grid_layout);
         mRecyclerView = (RecyclerView)findViewById(R.id.myRecyclerView);
         getPictureHandler = new GetPictureHandler(this);
-        getListItemData();
+        getListAlbumImageData();
     }
 
 
@@ -55,16 +56,16 @@ public class StaggeredGridLayoutActivity extends AppCompatActivity {
                     staggeredGridLayoutActivity.mRecyclerView.setHasFixedSize(true);
                     staggeredGridLayoutActivity.mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
                     staggeredGridLayoutActivity.mRecyclerView.setAdapter(new MyRecyclerViewAdapter(
-                            staggeredGridLayoutActivity, staggeredGridLayoutActivity.listViewItems));
+                            staggeredGridLayoutActivity, staggeredGridLayoutActivity.listAlbumImageData));
                 }
             }
         }
     }
 
     /**
-     * get the path of each picture in the item
+     * get the information of each picture in the item
      * */
-    private void getListItemData(){
+    private void getListAlbumImageData(){
         // get the picture name and picture path,and then store into List
         new Thread(new Runnable() {
             @Override
@@ -76,11 +77,14 @@ public class StaggeredGridLayoutActivity extends AppCompatActivity {
                                 "=\"image/jpeg\" or " + MediaStore.Images.Media.MIME_TYPE + "=\"image/png\"",
                         null, MediaStore.Images.Media.DATE_MODIFIED + " desc");
                 if(cursor != null){
-                    listViewItems.clear();
+                    listAlbumImageData.clear();
                     while(cursor.moveToNext()){
                         String picturePath = "file://" + cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                        Log.e("picturePath",picturePath);
-                        listViewItems.add(picturePath);
+                        int width = cursor.getInt(cursor.getColumnIndex(MediaStore.Images.Media.WIDTH));
+                        int height = cursor.getInt(cursor.getColumnIndex(MediaStore.Images.Media.HEIGHT));
+                        Log.e("picturePath",picturePath + " " + width + " " + height);
+                        AlbumImageData albumImageData = new AlbumImageData(width,height,picturePath);
+                        listAlbumImageData.add(albumImageData);
                     }
                 }
                 Message msg = Message.obtain();

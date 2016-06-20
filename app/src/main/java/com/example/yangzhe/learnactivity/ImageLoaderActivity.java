@@ -40,8 +40,8 @@ public class ImageLoaderActivity extends AppCompatActivity {
         btnShowImageLoader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // display the image from url
-                String uri = "file:///storage/emulated/0/Download/00-24-03-14.jpg";
+                // display the image from uri
+                String uri = "http://tnfs.tngou.net/img/ext/160321/b148ab59b84e59dfd988da84aff1fbf1.jpg";
                 ImageLoader.getInstance().displayImage(uri,imageViewShowImageLoader,options);
             }
         });
