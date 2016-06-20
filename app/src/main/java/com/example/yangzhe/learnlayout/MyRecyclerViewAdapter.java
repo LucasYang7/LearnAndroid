@@ -66,11 +66,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewHo
     public void onBindViewHolder(final MyRecyclerViewHolder holder, int position) {
         AlbumImageData albumImageData = itemList.get(position);
         String uri = albumImageData.getPath();
-        int width = albumImageData.getWidth();       // get the width of original image
-        int height = albumImageData.getHeight();     // get the height of original image
         Log.e("URI",uri + " " + position);
         holder.textViewInCardView.setText(uri);
-        holder.imageViewCardPicture.setOriginalSize(width,height);   // set the original image's size
+        //when imageViewCardPicture is RatioImageView
+        //int width = albumImageData.getWidth();       // get the width of original image
+        //int height = albumImageData.getHeight();     // get the height of original image
+        //holder.imageViewCardPicture.setOriginalSize(width,height); // set the original image's size
         ImageLoader.getInstance().displayImage(uri,holder.imageViewCardPicture);
     }
 

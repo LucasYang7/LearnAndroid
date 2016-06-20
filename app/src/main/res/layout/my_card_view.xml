@@ -12,11 +12,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.example.yangzhe.widget.RatioImageView
+        <!--
+            <com.example.yangzhe.widget.RatioImageView
             android:id="@+id/imageViewShowCardPicture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher" />
+        -->
+
+        <!-- set adjustViewBounds be true to adjust the its bounds to preserve
+             the aspect ratio of its drawable.-->
+        <ImageView
+            android:id="@+id/imageViewShowCardPicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
