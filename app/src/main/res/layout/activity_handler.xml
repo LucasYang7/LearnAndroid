@@ -13,17 +13,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonPostMessage"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="post an message" />
+        android:text="post an message"
+        android:layout_above="@+id/buttonPostDelayMessage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="62dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginBottom="21dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Post an delay message"
         android:id="@+id/buttonPostDelayMessage"
-        android:layout_marginTop="32dp"
-        android:layout_below="@+id/buttonPostMessage"
+        android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/buttonPostMessage"
         android:layout_alignStart="@+id/buttonPostMessage" />
 
@@ -32,8 +35,18 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/textViewShowRunnable"
-        android:layout_below="@+id/buttonPostDelayMessage"
+        android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/buttonPostDelayMessage"
         android:layout_alignStart="@+id/buttonPostDelayMessage"
-        android:layout_marginTop="55dp" />
+        android:layout_marginTop="23dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Run on UI thread"
+        android:id="@+id/buttonRunOnUiThread"
+        android:layout_marginTop="52dp"
+        android:layout_below="@+id/buttonPostDelayMessage"
+        android:layout_alignLeft="@+id/buttonPostDelayMessage"
+        android:layout_alignStart="@+id/buttonPostDelayMessage" />
 </RelativeLayout>

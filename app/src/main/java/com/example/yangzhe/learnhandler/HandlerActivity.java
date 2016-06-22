@@ -13,8 +13,9 @@ public class HandlerActivity extends AppCompatActivity {
 
     private Button btnPostMessage;
     private Button btnPostDelayMessage;
+    private Button btnRunOnUiThread;
     private TextView textViewShowMessage;
-    private Handler handler = new Handler();
+    private Handler handler = new Handler(); //Handler is Thread Local Storage,its life cycle is different from Activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,15 @@ public class HandlerActivity extends AppCompatActivity {
         btnPostMessage.setOnClickListener(click);
         btnPostDelayMessage = (Button)findViewById(R.id.buttonPostDelayMessage);
         btnPostDelayMessage.setOnClickListener(click);
-        textViewShowMessage = (TextView)findViewById(R.id.textViewShowMessage);
+        btnRunOnUiThread = (Button)findViewById(R.id.buttonRunOnUiThread);
+        btnRunOnUiThread.setOnClickListener(click);
+        textViewShowMessage = (TextView)findViewById(R.id.textViewShowRunnable);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                textViewShowMessage.setText("This is runOnUiThread method() run On UI thread.");
+            }
+        });
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -36,6 +45,10 @@ public class HandlerActivity extends AppCompatActivity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            /**
+                             * Every Message will execute the Runnable action when handled by Handler
+                             * post() will invoke getPostMessage(Runnable r),and assign the Runnable to a Message object.
+                             * */
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -59,6 +72,20 @@ public class HandlerActivity extends AppCompatActivity {
                                             " UI thread using postdealy and then UI thread execute this action in 5S later.");
                                 }
                             },5000);
+                        }
+                    }).start();
+                    break;
+                case R.id.buttonRunOnUiThread:
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // the below method run on ui thread
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textViewShowMessage.setText("This is runOnUiThread() method from buttonRunOnUiThread.");
+                                }
+                            });
                         }
                     }).start();
                     break;

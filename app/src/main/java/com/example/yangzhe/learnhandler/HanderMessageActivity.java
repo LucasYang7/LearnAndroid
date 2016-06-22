@@ -101,6 +101,7 @@ public class HanderMessageActivity extends AppCompatActivity {
 
     /**
      * This Handler is bind to UI thread
+     * It is an anonymous inner class which extends Handler
      * */
     private Handler handler = new Handler(){
         @Override
@@ -126,4 +127,20 @@ public class HanderMessageActivity extends AppCompatActivity {
         }
     };
 
+    //test
+    /**
+     * handler3 is a Handler Object reference , it will not the HanderMessageActivity Object's reference
+     * */
+    private Handler handler3 = new Handler();
+
+    /**
+     * handler4 is anonymous object reference, the anonymous class extends Handler class
+     * */
+    private Handler handler4 = new Handler(){
+        @Override
+        public void dispatchMessage(Message msg) {
+            super.dispatchMessage(msg);
+        }
+    };
+    //test
 }
