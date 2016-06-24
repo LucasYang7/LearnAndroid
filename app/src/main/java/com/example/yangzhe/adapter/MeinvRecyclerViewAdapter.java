@@ -35,8 +35,9 @@ public class MeinvRecyclerViewAdapter extends RecyclerView.Adapter<MeinvRecycler
     @Override
     public void onBindViewHolder(MeinvRecyclerViewHolder holder, int position) {
         InternetImageData internetImageData = itemList.get(position);
-        String url = internetImageData.getUrl();
-        holder.textViewInCardView.setText(url);
+        String url = internetImageData.getPicUrl();
+        String title = internetImageData.getTitle();
+        holder.textViewInCardView.setText(title);
         ImageLoader.getInstance().displayImage(url,holder.imageViewCardPicture);
     }
 

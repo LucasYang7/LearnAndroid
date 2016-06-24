@@ -1,11 +1,9 @@
 package com.example.yangzhe.learnjson;
 
-import android.media.MediaExtractor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -20,10 +18,10 @@ import com.example.yangzhe.support.Constants;
 import com.example.yangzhe.support.HttpOperation;
 
 import java.lang.ref.WeakReference;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ShowMeinvActivity extends AppCompatActivity {
+    private static final String TAG = "ShowMeinvActivity";
     private RecyclerView meinvRecyclerView;
     private GetMeinvPictureHandler getMeinvPictureHandler;
     ArrayList<InternetImageData> listInternetImageData = new ArrayList<InternetImageData>();
@@ -44,12 +42,12 @@ public class ShowMeinvActivity extends AppCompatActivity {
             public void onClick(View view) {
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
-                getMeinvUrlList();
+                getMeinvDataList();
             }
         });
     }
 
-    public void getMeinvUrlList(){
+    public void getMeinvDataList(){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -57,12 +55,14 @@ public class ShowMeinvActivity extends AppCompatActivity {
                 String httpArg = Constants.ApiBaiduMeinvHttpConstants.httpArg;
                 int numberOfPicture = Constants.ApiBaiduMeinvHttpConstants.numberOfPicture;
                 String jsonResult = HttpOperation.request(httpUrl,httpArg,numberOfPicture);
-                ArrayList<String> listPictureUrl = JsonParser.getPicUrlFromJson(jsonResult,numberOfPicture);
-                for(String pictureUrl:listPictureUrl){
-                    Log.e("pictureUrl",pictureUrl);
-                    InternetImageData internetImageData = new InternetImageData(pictureUrl);
-                    listInternetImageData.add(internetImageData);
+                listInternetImageData = JsonParser.getInterntPicInfoFromJson(
+                        jsonResult,numberOfPicture);
+                //test
+                for(InternetImageData internetImageData:listInternetImageData){
+                    Log.e(TAG,internetImageData.getPicUrl() + "\t" + internetImageData.getTitle());
                 }
+                //test
+
                 Message msg = Message.obtain(getMeinvPictureHandler);
                 msg.what = 100;
                 msg.sendToTarget();

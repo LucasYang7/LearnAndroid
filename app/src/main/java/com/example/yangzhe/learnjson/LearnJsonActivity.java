@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.yangzhe.learnactivity.R;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 public class LearnJsonActivity extends AppCompatActivity {
     public final String TAG = "LearnJsonActivity";
     private static TextView textViewShowPictureJson;
+    private Button btnGotoShowMeinvActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,16 @@ public class LearnJsonActivity extends AppCompatActivity {
 
             }
         });
+
+        btnGotoShowMeinvActivity = (Button)findViewById(R.id.buttonGotoShowMeinvActivity);
+        btnGotoShowMeinvActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // goto ShowMeinvActivity
+                Intent intent = new Intent(LearnJsonActivity.this,ShowMeinvActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -66,6 +78,7 @@ public class LearnJsonActivity extends AppCompatActivity {
             switch (msg.what){
                 case 1:
                     String json = msg.obj.toString();
+                    Log.e(TAG,json);
                     int numberOfPicture = Constants.ApiBaiduMeinvHttpConstants.numberOfPicture;
                     ArrayList<String> picUrlList = JsonParser.getPicUrlFromJson(json,numberOfPicture);
                     StringBuilder stringBuilder = new StringBuilder();
@@ -74,9 +87,6 @@ public class LearnJsonActivity extends AppCompatActivity {
                         stringBuilder = stringBuilder.append(picUrl + "\n");
                     }
                     textViewShowPictureJson.setText(stringBuilder.toString());
-                    // goto ShowMeinvActivity
-                    Intent intent = new Intent(LearnJsonActivity.this,ShowMeinvActivity.class);
-                    startActivity(intent);
                     break;
 
                 default:

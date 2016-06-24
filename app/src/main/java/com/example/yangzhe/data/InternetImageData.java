@@ -6,16 +6,19 @@ package com.example.yangzhe.data;
 public class InternetImageData {
     private int width;
     private int height;
-    private String url;               // the picture's address
+    private String picUrl;               // the picture's address
+    private String title;                // the picture's title
+    private String description;          // the picture's description
 
-    public InternetImageData(int width,int height,String url){
+    public InternetImageData(int width,int height,String picUrl){
         this.width = width;
         this.height = height;
-        this.url = url;
+        this.picUrl = picUrl;
     }
 
-    public InternetImageData(String url){
-        this.url = url;
+    public InternetImageData(String picUrl,String title){
+        this.picUrl = picUrl;
+        this.title = title;
     }
 
     public int getWidth(){
@@ -26,7 +29,11 @@ public class InternetImageData {
         return height;
     }
 
-    public String getUrl(){
-        return url;
+    public String getPicUrl(){
+        return picUrl;
+    }
+
+    public String getTitle(){
+        return title;
     }
 }
