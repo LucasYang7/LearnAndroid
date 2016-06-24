@@ -1,5 +1,6 @@
 package com.example.yangzhe.learnjson;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -47,7 +48,7 @@ public class LearnJsonActivity extends AppCompatActivity {
                         msg.what = 1;
                         msg.obj = jsonResult;
                         msg.sendToTarget();
-                        Log.e(TAG,jsonResult);
+                        //Log.e(TAG,jsonResult);
                     }
                 }).start();
 
@@ -58,7 +59,7 @@ public class LearnJsonActivity extends AppCompatActivity {
     /**
      * change Handler to WeakReference or change to AsyncTask
      * */
-    private static final Handler handler = new Handler(){
+    private final Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -69,9 +70,13 @@ public class LearnJsonActivity extends AppCompatActivity {
                     ArrayList<String> picUrlList = JsonParser.getPicUrlFromJson(json,numberOfPicture);
                     StringBuilder stringBuilder = new StringBuilder();
                     for(String picUrl:picUrlList){
+                        Log.e(TAG,picUrl);
                         stringBuilder = stringBuilder.append(picUrl + "\n");
                     }
                     textViewShowPictureJson.setText(stringBuilder.toString());
+                    // goto ShowMeinvActivity
+                    Intent intent = new Intent(LearnJsonActivity.this,ShowMeinvActivity.class);
+                    startActivity(intent);
                     break;
 
                 default:

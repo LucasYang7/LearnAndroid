@@ -35,7 +35,7 @@ public class HttpOperation {
             String strLine = null;
             while((strLine = bufferedReader.readLine())!=null){
                 stringBuffer.append(strLine);
-                stringBuffer.append("\r\n");
+                stringBuffer.append("\n");    // Used "\n"  as a new line character in Unix
             }
             bufferedReader.close();
             result = stringBuffer.toString();
