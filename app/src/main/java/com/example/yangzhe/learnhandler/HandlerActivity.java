@@ -11,22 +11,30 @@ import com.example.yangzhe.learnactivity.R;
 
 public class HandlerActivity extends AppCompatActivity {
 
-    private Button btnPostMessage;
-    private Button btnPostDelayMessage;
+    private Button btnPostRunnable;
+    private Button btnPostDelayRunnable;
     private Button btnRunOnUiThread;
+    private Button btnPostRunnableFromSubHandler;
     private TextView textViewShowMessage;
     private Handler handler = new Handler(); //Handler is Thread Local Storage,its life cycle is different from Activity
-
+    private SubHandler subHandler = new SubHandler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handler);
-        btnPostMessage = (Button)findViewById(R.id.buttonPostMessage);
-        btnPostMessage.setOnClickListener(click);
-        btnPostDelayMessage = (Button)findViewById(R.id.buttonPostDelayMessage);
-        btnPostDelayMessage.setOnClickListener(click);
+
+        btnPostRunnable = (Button)findViewById(R.id.buttonPostRunnable);
+        btnPostRunnable.setOnClickListener(click);
+
+        btnPostDelayRunnable = (Button)findViewById(R.id.buttonPostDelayRunnable);
+        btnPostDelayRunnable.setOnClickListener(click);
+
         btnRunOnUiThread = (Button)findViewById(R.id.buttonRunOnUiThread);
         btnRunOnUiThread.setOnClickListener(click);
+
+        btnPostRunnableFromSubHandler = (Button)findViewById(R.id.buttonPostRunnableFromSubHandler);
+        btnPostRunnableFromSubHandler.setOnClickListener(click);
+
         textViewShowMessage = (TextView)findViewById(R.id.textViewShowRunnable);
         runOnUiThread(new Runnable() {
             @Override
@@ -36,12 +44,17 @@ public class HandlerActivity extends AppCompatActivity {
         });
     }
 
+    // sub Handler post a Runnable execute
+    private static class SubHandler extends Handler{
+
+    }
+
     private View.OnClickListener click = new View.OnClickListener(){
 
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.buttonPostMessage:
+                case R.id.buttonPostRunnable:
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -59,7 +72,7 @@ public class HandlerActivity extends AppCompatActivity {
                         }
                     }).start();
                     break;
-                case R.id.buttonPostDelayMessage:
+                case R.id.buttonPostDelayRunnable:
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -72,6 +85,20 @@ public class HandlerActivity extends AppCompatActivity {
                                             " UI thread using postdealy and then UI thread execute this action in 5S later.");
                                 }
                             },5000);
+                        }
+                    }).start();
+                    break;
+                case R.id.buttonPostRunnableFromSubHandler:
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            subHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textViewShowMessage.setText("This is a Runnable action from " +
+                                            "SubHandler subHandler.");
+                                }
+                            });
                         }
                     }).start();
                     break;

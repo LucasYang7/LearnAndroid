@@ -55,7 +55,7 @@ public class ShowMeinvActivity extends AppCompatActivity {
                 String httpArg = Constants.ApiBaiduMeinvHttpConstants.httpArg;
                 int numberOfPicture = Constants.ApiBaiduMeinvHttpConstants.numberOfPicture;
                 String jsonResult = HttpOperation.request(httpUrl,httpArg,numberOfPicture);
-                listInternetImageData = JsonParser.getInterntPicInfoFromJson(
+                listInternetImageData = JsonParser.getInternetPicInfoFromJson(
                         jsonResult,numberOfPicture);
                 //test
                 for(InternetImageData internetImageData:listInternetImageData){

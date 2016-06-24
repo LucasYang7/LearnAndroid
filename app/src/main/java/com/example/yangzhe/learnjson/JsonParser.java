@@ -42,7 +42,7 @@ public class JsonParser {
      * @param numberOfPicture the number of picture which be requested
      * @return picInfoList   a list which store the picture's url
      * */
-    public static ArrayList<InternetImageData> getInterntPicInfoFromJson(String json,int numberOfPicture){
+    public static ArrayList<InternetImageData> getInternetPicInfoFromJson(String json, int numberOfPicture){
         ArrayList<InternetImageData> picInfoList = new ArrayList<InternetImageData>();
         try {
             JSONObject jsonObject = new JSONObject(json);
