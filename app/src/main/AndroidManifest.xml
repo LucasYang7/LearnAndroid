@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".LearnAndroidApplication"
@@ -27,7 +27,11 @@
         <activity android:name="com.example.yangzhe.learnhandler.HanderMessageActivity" />
         <activity android:name=".LearnFragmentActivity" />
         <activity android:name=".ImageLoaderActivity" />
-        <activity android:name="com.example.yangzhe.learnlayout.StaggeredGridLayoutActivity"></activity>
+        <activity android:name="com.example.yangzhe.learnlayout.StaggeredGridLayoutActivity" />
+        <activity
+            android:name="com.example.yangzhe.learnjson.LearnJsonActivity"
+            android:label="@string/title_activity_learn_json"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

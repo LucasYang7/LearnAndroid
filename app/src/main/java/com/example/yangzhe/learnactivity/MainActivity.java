@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.example.yangzhe.learnhandler.HanderMessageActivity;
 import com.example.yangzhe.learnhandler.HandlerActivity;
+import com.example.yangzhe.learnjson.LearnJsonActivity;
 import com.example.yangzhe.learnlayout.StaggeredGridLayoutActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoImageLoaderActivity.setOnClickListener(click);
         Button btnGotoStaggeredGridActivity = (Button)findViewById(R.id.buttonGotoStaggeredGridActivity);
         btnGotoStaggeredGridActivity.setOnClickListener(click);
+        Button btnGotoLearnJsonActivity = (Button)findViewById(R.id.buttonGotoLearnJsonActivity);
+        btnGotoLearnJsonActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -76,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.buttonGotoStaggeredGridActivity:
                     gotoOtherActivity(StaggeredGridLayoutActivity.class);
                     break;
+
+                case R.id.buttonGotoLearnJsonActivity:
+                    gotoOtherActivity(LearnJsonActivity.class);
+                    break;
+
                 default:
                     break;
             }

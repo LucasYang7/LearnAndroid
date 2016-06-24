@@ -8,4 +8,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_add_fragment">This is a fragment created by add operation</string>
     <string name="hello_blank_fragment">This is default fragment add in xml file</string>
+    <string name="title_activity_learn_json">LearnJsonActivity</string>
 </resources>
