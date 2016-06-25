@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.yangzhe.learnasynctask.LearnAsyncTaskActivity;
 import com.example.yangzhe.learnhandler.HanderMessageActivity;
 import com.example.yangzhe.learnhandler.HandlerActivity;
 import com.example.yangzhe.learnjson.LearnJsonActivity;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoStaggeredGridActivity.setOnClickListener(click);
         Button btnGotoLearnJsonActivity = (Button)findViewById(R.id.buttonGotoLearnJsonActivity);
         btnGotoLearnJsonActivity.setOnClickListener(click);
+        Button btnGotoTestAsyncTaskActivity = (Button)findViewById(R.id.buttonGotoTestAsyncTaskActivity);
+        btnGotoTestAsyncTaskActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -82,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.buttonGotoLearnJsonActivity:
                     gotoOtherActivity(LearnJsonActivity.class);
+                    break;
+
+                case R.id.buttonGotoTestAsyncTaskActivity:
+                    gotoOtherActivity(LearnAsyncTaskActivity.class);
                     break;
 
                 default:
