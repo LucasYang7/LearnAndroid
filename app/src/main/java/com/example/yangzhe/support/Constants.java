@@ -11,5 +11,7 @@ public interface Constants {
         String httpUrl = "http://apis.baidu.com/txapi/mvtp/meinv";
         String httpArg = "num=";
         int numberOfPicture = 20;
+
+        String failToGetJson = "Fail to get json object,it seems you can not connect to the server.";
     }
 }

@@ -46,10 +46,18 @@ public class LearnJsonActivity extends AppCompatActivity {
                         String httpArg = Constants.ApiBaiduMeinvHttpConstants.httpArg;
                         int numberOfpicture = Constants.ApiBaiduMeinvHttpConstants.numberOfPicture;
                         String jsonResult = HttpOperation.request(httpUrl,httpArg,numberOfpicture);
-                        Message msg = Message.obtain(handler);
-                        msg.what = 1;
-                        msg.obj = jsonResult;
-                        msg.sendToTarget();
+                        if(jsonResult == null){
+                            jsonResult = Constants.ApiBaiduMeinvHttpConstants.failToGetJson;
+                            Message msg = Message.obtain(handler);
+                            msg.what = 0;
+                            msg.obj = jsonResult;
+                            msg.sendToTarget();
+                        }else {
+                            Message msg = Message.obtain(handler);
+                            msg.what = 1;
+                            msg.obj = jsonResult;
+                            msg.sendToTarget();
+                        }
                         //Log.e(TAG,jsonResult);
                     }
                 }).start();
@@ -76,6 +84,10 @@ public class LearnJsonActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what){
+                case 0:
+                    textViewShowPictureJson.setText(msg.obj.toString());
+                    break;
+
                 case 1:
                     String json = msg.obj.toString();
                     Log.e(TAG,json);

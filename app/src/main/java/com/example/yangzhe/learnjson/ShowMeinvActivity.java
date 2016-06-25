@@ -10,6 +10,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.yangzhe.adapter.MeinvRecyclerViewAdapter;
 import com.example.yangzhe.data.InternetImageData;
@@ -55,17 +56,24 @@ public class ShowMeinvActivity extends AppCompatActivity {
                 String httpArg = Constants.ApiBaiduMeinvHttpConstants.httpArg;
                 int numberOfPicture = Constants.ApiBaiduMeinvHttpConstants.numberOfPicture;
                 String jsonResult = HttpOperation.request(httpUrl,httpArg,numberOfPicture);
-                listInternetImageData = JsonParser.getInternetPicInfoFromJson(
-                        jsonResult,numberOfPicture);
-                //test
-                for(InternetImageData internetImageData:listInternetImageData){
-                    Log.e(TAG,internetImageData.getPicUrl() + "\t" + internetImageData.getTitle());
+                if(jsonResult == null){
+                    jsonResult = Constants.ApiBaiduMeinvHttpConstants.failToGetJson;
+                    Message msg = Message.obtain(getMeinvPictureHandler);
+                    msg.what = 0;
+                    msg.obj = jsonResult;
+                    msg.sendToTarget();
+                }else{
+                    listInternetImageData = JsonParser.getInternetPicInfoFromJson(
+                            jsonResult,numberOfPicture);
+                    //test
+                    for(InternetImageData internetImageData:listInternetImageData){
+                        Log.e(TAG,internetImageData.getPicUrl() + "\t" + internetImageData.getTitle());
+                    }
+                    //test
+                    Message msg = Message.obtain(getMeinvPictureHandler);
+                    msg.what = 100;
+                    msg.sendToTarget();
                 }
-                //test
-
-                Message msg = Message.obtain(getMeinvPictureHandler);
-                msg.what = 100;
-                msg.sendToTarget();
             }
         }).start();
     }
@@ -79,19 +87,29 @@ public class ShowMeinvActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if(msg.what == 100){
-                ShowMeinvActivity showMeinvActivity = weakRefActivity.get();
-                if(showMeinvActivity == null)
-                    return;
-                else{
-                    // set RecyclerView's layout and adapter
-                    StaggeredGridLayoutManager staggeredGridLayoutManager =
-                            new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
-                    showMeinvActivity.meinvRecyclerView.setHasFixedSize(true);
-                    showMeinvActivity.meinvRecyclerView.setLayoutManager(staggeredGridLayoutManager);
-                    showMeinvActivity.meinvRecyclerView.setAdapter(new MeinvRecyclerViewAdapter(
-                            showMeinvActivity,showMeinvActivity.listInternetImageData));
-                }
+            switch(msg.what){
+                case 0:
+                    String failToGetJson = msg.obj.toString();
+                    Toast.makeText(weakRefActivity.get(),failToGetJson,Toast.LENGTH_SHORT).show();
+                    break;
+
+                case 100:
+                    ShowMeinvActivity showMeinvActivity = weakRefActivity.get();
+                    if(showMeinvActivity == null)
+                        return;
+                    else{
+                        // set RecyclerView's layout and adapter
+                        StaggeredGridLayoutManager staggeredGridLayoutManager =
+                                new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+                        showMeinvActivity.meinvRecyclerView.setHasFixedSize(true);
+                        showMeinvActivity.meinvRecyclerView.setLayoutManager(staggeredGridLayoutManager);
+                        showMeinvActivity.meinvRecyclerView.setAdapter(new MeinvRecyclerViewAdapter(
+                                showMeinvActivity,showMeinvActivity.listInternetImageData));
+                    }
+                    break;
+
+                default:
+                    break;
             }
         }
     }
