@@ -10,63 +10,75 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.yangzhe.learnactivity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World! This is from Ubuntu 16.04!"
-        android:id="@+id/textView" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello World! This is from Ubuntu 16.04!"
+                android:id="@+id/textView" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="show a dialog"
-        android:id="@+id/buttonShowDialog"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="show a dialog"
+                android:id="@+id/buttonShowDialog"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show a dialog activity"
-        android:id="@+id/buttonShowDialogActivity"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Show a dialog activity"
+                android:id="@+id/buttonShowDialogActivity"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Goto Handler Activity"
-        android:id="@+id/buttonGotoHandlerActivity"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Handler Activity"
+                android:id="@+id/buttonGotoHandlerActivity"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Goto Handler Message Activity"
-        android:id="@+id/buttonGotoHandlerMessageActivity"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Handler Message Activity"
+                android:id="@+id/buttonGotoHandlerMessageActivity"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Goto Fragment Activity"
-        android:id="@+id/buttonGotoFragmentActivity" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Fragment Activity"
+                android:id="@+id/buttonGotoFragmentActivity" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Goto Image Loader Activity"
-        android:id="@+id/buttonGotoImageLoaderActivity" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Image Loader Activity"
+                android:id="@+id/buttonGotoImageLoaderActivity" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Goto StaggeredGridLayout Activity"
-        android:id="@+id/buttonGotoStaggeredGridActivity" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto StaggeredGridLayout Activity"
+                android:id="@+id/buttonGotoStaggeredGridActivity" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Goto Learn Json Activity"
-        android:id="@+id/buttonGotoLearnJsonActivity" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Learn Json Activity"
+                android:id="@+id/buttonGotoLearnJsonActivity" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Goto Test AsyncTask Activity"
-        android:id="@+id/buttonGotoTestAsyncTaskActivity" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Test AsyncTask Activity"
+                android:id="@+id/buttonGotoTestAsyncTaskActivity" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
 </LinearLayout>
