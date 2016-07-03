@@ -11,6 +11,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.yangzhe.adapter.MeinvRecyclerViewAdapter;
@@ -35,7 +36,14 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // set the RecyclerView
         meinvRecyclerView = (RecyclerView)findViewById(R.id.meinvRecyclerView);
+        StaggeredGridLayoutManager staggeredGridLayoutManager =
+                new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        meinvRecyclerView.setHasFixedSize(true);
+        meinvRecyclerView.setLayoutManager(staggeredGridLayoutManager);
+        // set an empty recyclerview to solve meinvSwipeRefreshLayout not showing in first time.
+        meinvRecyclerView.setAdapter(new EmptyMeinvRecyclerViewAdapter());
 
         getMeinvPictureHandler = new GetMeinvPictureHandler(this);
 
@@ -49,6 +57,7 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
             }
         });
 
+        // set the SwipeRefreshLayout
         meinvSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.meinvSwipeRefreshLayout);
         meinvSwipeRefreshLayout.setOnRefreshListener(this);
         meinvSwipeRefreshLayout.setColorSchemeResources(R.color.colorSwipeRefreshLayoutRed,
@@ -134,4 +143,23 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
         }
     }
 
+}
+
+
+class EmptyMeinvRecyclerViewAdapter extends RecyclerView.Adapter<MeinvRecyclerViewHolder>{
+
+    @Override
+    public MeinvRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(MeinvRecyclerViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
 }
