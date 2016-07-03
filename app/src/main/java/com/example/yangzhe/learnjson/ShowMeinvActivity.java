@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -21,8 +22,9 @@ import com.example.yangzhe.support.HttpOperation;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-public class ShowMeinvActivity extends AppCompatActivity {
+public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     private static final String TAG = "ShowMeinvActivity";
+    private SwipeRefreshLayout meinvSwipeRefreshLayout;
     private RecyclerView meinvRecyclerView;
     private GetMeinvPictureHandler getMeinvPictureHandler;
     ArrayList<InternetImageData> listInternetImageData = new ArrayList<InternetImageData>();
@@ -43,9 +45,15 @@ public class ShowMeinvActivity extends AppCompatActivity {
             public void onClick(View view) {
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
-                getMeinvDataList();
+                //getMeinvDataList();
             }
         });
+
+        meinvSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.meinvSwipeRefreshLayout);
+        meinvSwipeRefreshLayout.setOnRefreshListener(this);
+        meinvSwipeRefreshLayout.setColorSchemeResources(R.color.colorSwipeRefreshLayoutRed,
+                R.color.colorSwipeRefreshLayoutGreen,
+                R.color.colorSwipeRefreshLayoutBlue);
     }
 
     public void getMeinvDataList(){
@@ -63,13 +71,17 @@ public class ShowMeinvActivity extends AppCompatActivity {
                     msg.obj = jsonResult;
                     msg.sendToTarget();
                 }else{
-                    listInternetImageData = JsonParser.getInternetPicInfoFromJson(
+
+                    ArrayList<InternetImageData> listOnceInternetImageData = JsonParser.getInternetPicInfoFromJson(
                             jsonResult,numberOfPicture);
+                    listInternetImageData.addAll(listOnceInternetImageData);
+
                     //test
                     for(InternetImageData internetImageData:listInternetImageData){
                         Log.e(TAG,internetImageData.getPicUrl() + "\t" + internetImageData.getTitle());
                     }
                     //test
+
                     Message msg = Message.obtain(getMeinvPictureHandler);
                     msg.what = 100;
                     msg.sendToTarget();
@@ -78,7 +90,13 @@ public class ShowMeinvActivity extends AppCompatActivity {
         }).start();
     }
 
-    private static class GetMeinvPictureHandler extends Handler{
+    @Override
+    public void onRefresh() {
+        meinvSwipeRefreshLayout.setRefreshing(true);
+        getMeinvDataList();
+    }
+
+    private class GetMeinvPictureHandler extends Handler{
         WeakReference<ShowMeinvActivity> weakRefActivity = null;
         public GetMeinvPictureHandler(ShowMeinvActivity context){
             weakRefActivity = new WeakReference<ShowMeinvActivity>(context);
@@ -89,11 +107,13 @@ public class ShowMeinvActivity extends AppCompatActivity {
             super.handleMessage(msg);
             switch(msg.what){
                 case 0:
+                    meinvSwipeRefreshLayout.setRefreshing(false);
                     String failToGetJson = msg.obj.toString();
                     Toast.makeText(weakRefActivity.get(),failToGetJson,Toast.LENGTH_SHORT).show();
                     break;
 
                 case 100:
+                    meinvSwipeRefreshLayout.setRefreshing(false);
                     ShowMeinvActivity showMeinvActivity = weakRefActivity.get();
                     if(showMeinvActivity == null)
                         return;
