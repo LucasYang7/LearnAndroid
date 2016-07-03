@@ -36,7 +36,8 @@
             android:name="com.example.yangzhe.learnjson.ShowMeinvActivity"
             android:label="@string/title_activity_show_meinv"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.yangzhe.learnasynctask.LearnAsyncTaskActivity"></activity>
+        <activity android:name="com.example.yangzhe.learnasynctask.LearnAsyncTaskActivity" />
+        <activity android:name="com.example.yangzhe.learnlayout.LearnSwipeRereshLayoutActivity"></activity>
     </application>
 
 </manifest>

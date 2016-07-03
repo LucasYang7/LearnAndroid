@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorSwipeRefreshLayoutRed">#FF0000</color>
+    <color name="colorSwipeRefreshLayoutGreen">#00FF00</color>
+    <color name="colorSwipeRefreshLayoutBlue">#0000FF</color>
 </resources>

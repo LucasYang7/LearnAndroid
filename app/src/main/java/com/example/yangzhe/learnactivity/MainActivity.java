@@ -13,6 +13,7 @@ import com.example.yangzhe.learnasynctask.LearnAsyncTaskActivity;
 import com.example.yangzhe.learnhandler.HanderMessageActivity;
 import com.example.yangzhe.learnhandler.HandlerActivity;
 import com.example.yangzhe.learnjson.LearnJsonActivity;
+import com.example.yangzhe.learnlayout.LearnSwipeRereshLayoutActivity;
 import com.example.yangzhe.learnlayout.StaggeredGridLayoutActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoLearnJsonActivity.setOnClickListener(click);
         Button btnGotoTestAsyncTaskActivity = (Button)findViewById(R.id.buttonGotoTestAsyncTaskActivity);
         btnGotoTestAsyncTaskActivity.setOnClickListener(click);
+        Button btnGotoLearnSwipeRefreshActivity = (Button)findViewById(R.id.buttonGotoLearnSwipeRefreshActivity);
+        btnGotoLearnSwipeRefreshActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -89,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.buttonGotoTestAsyncTaskActivity:
                     gotoOtherActivity(LearnAsyncTaskActivity.class);
+                    break;
+
+                case R.id.buttonGotoLearnSwipeRefreshActivity:
+                    gotoOtherActivity(LearnSwipeRereshLayoutActivity.class);
                     break;
 
                 default:
