@@ -10,7 +10,7 @@ public interface Constants {
     interface ApiBaiduMeinvHttpConstants{
         String httpUrl = "http://apis.baidu.com/txapi/mvtp/meinv";
         String httpArg = "num=";
-        int numberOfPicture = 20;
+        int numberOfPicture = 10;
 
         String failToGetJson = "Fail to get json object,it seems you can not connect to the server.";
     }

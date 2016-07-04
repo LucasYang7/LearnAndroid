@@ -22,6 +22,7 @@ import com.example.yangzhe.support.HttpOperation;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     private static final String TAG = "ShowMeinvActivity";
@@ -80,7 +81,7 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
                     msg.obj = jsonResult;
                     msg.sendToTarget();
                 }else{
-
+                    Collections.reverse(listInternetImageData);
                     ArrayList<InternetImageData> listOnceInternetImageData = JsonParser.getInternetPicInfoFromJson(
                             jsonResult,numberOfPicture);
                     listInternetImageData.addAll(listOnceInternetImageData);
@@ -91,6 +92,7 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
                     }
                     //test
 
+                    Collections.reverse(listInternetImageData);
                     Message msg = Message.obtain(getMeinvPictureHandler);
                     msg.what = 100;
                     msg.sendToTarget();

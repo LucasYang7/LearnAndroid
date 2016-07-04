@@ -1,5 +1,7 @@
 package com.example.yangzhe.learnjson;
 
+import android.util.Log;
+
 import com.example.yangzhe.data.InternetImageData;
 
 import org.json.JSONArray;
@@ -13,6 +15,7 @@ import java.util.List;
  * Created by yangzhe on 16-6-24.
  */
 public class JsonParser {
+    public static final String TAG = "JSON";
     /**
      * Get the picture url from json
      * @param json the json from baidu meinv api server
@@ -49,6 +52,7 @@ public class JsonParser {
             JSONArray jsonArray = jsonObject.getJSONArray("newslist");
             for(int i = 0;i < jsonArray.length();i++){
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                Log.e(TAG,jsonObject1.toString());
                 String picUrl = jsonObject1.getString("picUrl");
                 String title = jsonObject1.getString("title");
                 InternetImageData internetImageData = new InternetImageData(picUrl,title);
