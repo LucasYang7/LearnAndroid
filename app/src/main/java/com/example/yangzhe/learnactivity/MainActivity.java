@@ -15,6 +15,7 @@ import com.example.yangzhe.learnhandler.HandlerActivity;
 import com.example.yangzhe.learnjson.LearnJsonActivity;
 import com.example.yangzhe.learnlayout.LearnSwipeRereshLayoutActivity;
 import com.example.yangzhe.learnlayout.StaggeredGridLayoutActivity;
+import com.example.yangzhe.learnrxjava.LearnRxJavaActivity;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivityLifeCycle";
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoTestAsyncTaskActivity.setOnClickListener(click);
         Button btnGotoLearnSwipeRefreshActivity = (Button)findViewById(R.id.buttonGotoLearnSwipeRefreshActivity);
         btnGotoLearnSwipeRefreshActivity.setOnClickListener(click);
+        Button btnGotoLearnRxJavaActivity = (Button)findViewById(R.id.buttonGotoLearnRxJava);
+        btnGotoLearnRxJavaActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -96,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.buttonGotoLearnSwipeRefreshActivity:
                     gotoOtherActivity(LearnSwipeRereshLayoutActivity.class);
+                    break;
+
+                case R.id.buttonGotoLearnRxJava:
+                    gotoOtherActivity(LearnRxJavaActivity.class);
                     break;
 
                 default:

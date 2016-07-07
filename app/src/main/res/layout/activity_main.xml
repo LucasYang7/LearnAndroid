@@ -83,6 +83,12 @@
                 android:text="Goto Learn SwipeRefreshLayout Activity"
                 android:id="@+id/buttonGotoLearnSwipeRefreshActivity"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Learn RxJava Activity"
+                android:id="@+id/buttonGotoLearnRxJava"/>
+
         </LinearLayout>
     </ScrollView>
 
