@@ -1,29 +1,35 @@
 package com.example.yangzhe.learnrxjava;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.yangzhe.learnactivity.R;
 
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class LearnRxJavaActivity extends AppCompatActivity {
     private final String TAG = "LearnRxJava";
-    private TextView textViewShowRxJava;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn_rx_java);
-        textViewShowRxJava = (TextView)findViewById(R.id.textViewShowRxJava);
+        imageView = (ImageView)findViewById(R.id.imageViewShowRxJava);
         //showStringInRxJava();
         testActionInterface();
+        testScheduler();
     }
 
     /**
@@ -116,4 +122,27 @@ public class LearnRxJavaActivity extends AppCompatActivity {
 
     }
 
+    public void testScheduler(){
+        /*
+        Observable.just(1, 2, 3, 4)
+                .subscribeOn(Schedulers.io()) // 指定 subscribe() 发生在 IO 线程
+                .observeOn(AndroidSchedulers.mainThread()) // 指定 Subscriber 的回调发生在主线程
+                .subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer number) {
+                        Log.e(TAG, "number:" + number);
+                    }
+                });
+        */
+        Observable.just(1,2,3,4)
+                .subscribeOn(Schedulers.io())            // 指定subscribe()放生在IO线程（产生事件）
+                .observeOn(AndroidSchedulers.mainThread())   // 指定观察者Subscriber的回调函数(消费事件)发生在主线程
+                .subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer integer) {
+                        Toast.makeText(LearnRxJavaActivity.this,integer.toString(),
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
 }
