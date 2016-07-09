@@ -27,7 +27,7 @@ public class LearnRxJavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn_rx_java);
         imageView = (ImageView)findViewById(R.id.imageViewShowRxJava);
-        //showStringInRxJava();
+        showStringInRxJava();
         testActionInterface();
         testScheduler();
     }
@@ -58,6 +58,29 @@ public class LearnRxJavaActivity extends AppCompatActivity {
     }
 
     /**
+     * create Subscriber in RxJava
+     * */
+    Subscriber<String> createSubscriber(){
+        Subscriber<String> subscriber = new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+                Log.e(TAG,"Subscriber onCompleted()");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(TAG,"Subscriber onError()");
+            }
+
+            @Override
+            public void onNext(String s) {
+                Log.e(TAG,"Subscriber: " + s);
+            }
+        };
+        return subscriber;
+    }
+
+    /**
      * create Observable object,OnSubscribe looks like a plan.
      * call() method in OnSubscribe will be invoked automatically when observable subscribed by observer.
      * */
@@ -85,9 +108,11 @@ public class LearnRxJavaActivity extends AppCompatActivity {
     }
 
     public void showStringInRxJava(){
-        Observer<String> observer = createObsever();
         Observable observable = createObservable();
-        observable.subscribe(observer);
+//        Observer<String> observer = createObsever();
+//        observable.subscribe(observer);
+        Subscriber<String> subscriber = createSubscriber();
+        observable.subscribe(subscriber);
     }
 
     public void testActionInterface(){
