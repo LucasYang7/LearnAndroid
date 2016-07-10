@@ -8,7 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.yangzhe.data.StudentDataForRxJava;
 import com.example.yangzhe.learnactivity.R;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import rx.Observable;
 import rx.Observer;
@@ -16,11 +21,17 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 public class LearnRxJavaActivity extends AppCompatActivity {
     private final String TAG = "LearnRxJava";
     private ImageView imageView;
+
+    // Student data to test map() and flatMap()
+    // private List<StudentDataForRxJava.Course> courses = new ArrayList<StudentDataForRxJava.Course>();
+    // = {{"Math","English","Chinese"},{"Math","Sports","Chinese"},{"Math","Chinese"},{"Math"},{"English"},{"Chinese"}};
+    private StudentDataForRxJava[] studentDataForRxJavas = new StudentDataForRxJava[10];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +41,11 @@ public class LearnRxJavaActivity extends AppCompatActivity {
         showStringInRxJava();
         testActionInterface();
         testScheduler();
+        // test map() and flatMap()
+        initStudentData();
+        testMap();
+        printCourseNotUsingFlatMap();
+        printCourseUsingFlatMap();
     }
 
     /**
@@ -170,4 +186,104 @@ public class LearnRxJavaActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    /**
+     * create StudentDataForRxJava array and then init
+     * */
+    public void initStudentData(){
+
+        for(int i = 0;i < studentDataForRxJavas.length;i++){
+            studentDataForRxJavas[i] = new StudentDataForRxJava("Haha" + i) ;
+            List<StudentDataForRxJava.Course> courses = new ArrayList<StudentDataForRxJava.Course>();
+            for(int j = 0; j <= i;j++){
+                StudentDataForRxJava.Course course =  studentDataForRxJavas[i].new Course("Math" + i + j);
+                courses.add(course);
+            }
+            studentDataForRxJavas[i].setCourses(courses);
+            //courses.clear();
+        }
+    }
+
+    public void testMap(){
+
+        Subscriber<String> subscriber = new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+                Log.e(TAG,"onCompleted in TestMap()");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(TAG,"onError in TestMap()");
+            }
+
+            @Override
+            public void onNext(String name) {
+                Log.e(TAG,"student name " + name);
+            }
+        };
+
+        Observable.from(studentDataForRxJavas)
+                .map(new Func1<StudentDataForRxJava, String>() {
+                    @Override
+                    public String call(StudentDataForRxJava studentDataForRxJava) {
+                        return studentDataForRxJava.getName();
+                    }
+                })
+                .subscribe(subscriber);
+    }
+
+    public void printCourseNotUsingFlatMap(){
+        Subscriber<StudentDataForRxJava> subscriber = new Subscriber<StudentDataForRxJava>() {
+            @Override
+            public void onCompleted() {
+                Log.e(TAG,"onCompleted() in printCourseNotUsingFlatMap()");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(TAG,"onError() in printCourseNotUsingFlatMap()");
+            }
+
+            @Override
+            public void onNext(StudentDataForRxJava studentDataForRxJava) {
+                List<StudentDataForRxJava.Course> courseList = studentDataForRxJava.getCourses();
+                for(StudentDataForRxJava.Course course:courseList){
+                    Log.e(TAG,course.getCourseName() + " in printCourseNotUsingFlatMap()");
+                }
+            }
+        };
+
+        Observable.from(studentDataForRxJavas)
+                .subscribe(subscriber);
+    }
+
+    public void printCourseUsingFlatMap(){
+        Subscriber<StudentDataForRxJava.Course> subscriber = new Subscriber<StudentDataForRxJava.Course>() {
+            @Override
+            public void onCompleted() {
+                Log.e(TAG,"onCompleted() in printCourseUsingFlatMap()");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(TAG,"onError() in printCourseUsingFlatMap()");
+            }
+
+            @Override
+            public void onNext(StudentDataForRxJava.Course course) {
+                Log.e(TAG,course.getCourseName() + " in printCourseUsingFlatMap()");
+            }
+        };
+
+        Observable.from(studentDataForRxJavas)
+                .flatMap(new Func1<StudentDataForRxJava, Observable<StudentDataForRxJava.Course>>() {
+                    @Override
+                    public Observable<StudentDataForRxJava.Course> call(StudentDataForRxJava studentDataForRxJava) {
+                        return Observable.from(studentDataForRxJava.getCourses());   // return Observable<StudentDataForRxJava.Course>
+                    }
+                })
+                .subscribe(subscriber);
+    }
+
 }
