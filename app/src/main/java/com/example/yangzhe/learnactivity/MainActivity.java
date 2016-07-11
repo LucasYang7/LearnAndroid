@@ -15,6 +15,7 @@ import com.example.yangzhe.learnhandler.HandlerActivity;
 import com.example.yangzhe.learnjson.LearnJsonActivity;
 import com.example.yangzhe.learnlayout.LearnSwipeRereshLayoutActivity;
 import com.example.yangzhe.learnlayout.StaggeredGridLayoutActivity;
+import com.example.yangzhe.learnpicasso.PicassoActivity;
 import com.example.yangzhe.learnrxjava.LearnRxJavaActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoLearnSwipeRefreshActivity.setOnClickListener(click);
         Button btnGotoLearnRxJavaActivity = (Button)findViewById(R.id.buttonGotoLearnRxJava);
         btnGotoLearnRxJavaActivity.setOnClickListener(click);
+        Button btnGotoLearnPicassoActivity = (Button)findViewById(R.id.buttonGotoLearnPicassoActivity);
+        btnGotoLearnPicassoActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -103,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.buttonGotoLearnRxJava:
                     gotoOtherActivity(LearnRxJavaActivity.class);
+                    break;
+
+                case R.id.buttonGotoLearnPicassoActivity:
+                    gotoOtherActivity(PicassoActivity.class);
                     break;
 
                 default:
