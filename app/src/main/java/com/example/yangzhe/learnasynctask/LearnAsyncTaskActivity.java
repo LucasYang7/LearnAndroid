@@ -19,8 +19,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class LearnAsyncTaskActivity extends AppCompatActivity {
     private static final String TAG = "LearnAsyncTaskActivity";
+    private static final String TAG_Baidu = "BaiduContent";
     private Button btnShowWebContent;
     private TextView textViewShowWebContent;
     @Override
@@ -33,10 +38,14 @@ public class LearnAsyncTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new DownloadWebPageTask().execute(new String[]{"https://www.baidu.com"});
+                new DownloadWebPageTask2().execute(new String[]{"https://www.baidu.com"});
             }
         });
     }
 
+    /**
+     * 使用URL来请求 baidu.com 的首页内容
+     * */
     private class DownloadWebPageTask extends AsyncTask<String,Void,String>{
 
         @Override
@@ -75,8 +84,49 @@ public class LearnAsyncTaskActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            textViewShowWebContent.setText(result);
+            result = "From HttpURLConnection:\n" + result;
+            //textViewShowWebContent.setText(result);
+            Log.e(TAG_Baidu,result);
         }
+    }
+
+    /**
+     * 使用OkHttp来请求baidu.com的首页内容
+     * */
+    private class DownloadWebPageTask2 extends AsyncTask<String,Void,String>{
+
+        @Override
+        protected String doInBackground(String... url) {
+            String responseBody = run(url[0]);
+            return responseBody;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            result = "From OKHttp:\n" + result;
+            //textViewShowWebContent.setText(result);
+            Log.e(TAG_Baidu,result);
+        }
+    }
+
+    /**
+     * 使用OKHttp GET 方法来请求百度baidu.com的内容
+     * */
+    String run(String url){
+        String responseBody = "nothing";
+        OkHttpClient okHttpClient = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        try{
+            Response response = okHttpClient.newCall(request).execute();
+            responseBody =  response.body().string();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return responseBody;
     }
 
 }
