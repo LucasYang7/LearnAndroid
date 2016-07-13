@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.yangzhe.learnactivity.R;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class RetrofitActivity extends AppCompatActivity {
         Observer<List<TaingouGallery>> observer = new Observer<List<TaingouGallery>>() {
             @Override
             public void onCompleted() {
-              Log.e(TAG,"onCompleted() in RetrofitActivity.");
+                Log.e(TAG,"onCompleted() in RetrofitActivity.");
             }
 
             @Override
@@ -36,9 +37,9 @@ public class RetrofitActivity extends AppCompatActivity {
 
             @Override
             public void onNext(List<TaingouGallery> taingouGallerys) {
-               for(TaingouGallery taingouGallery : taingouGallerys){
-                   Log.e(TAG,taingouGallery.getDescription());
-               }
+                for(TaingouGallery taingouGallery : taingouGallerys){
+                    Log.e(TAG,taingouGallery.getDescription());
+                }
             }
         };
 
@@ -48,5 +49,63 @@ public class RetrofitActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
 
+        testGson();
+
+    }
+
+    public void testGson(){
+        Gson gson = new Gson();
+        int[] ints = {1,2,3,4,5};
+        String[] strings = {"abc","def","ghi"};
+
+        // Serialization
+        String jsonResult = "";
+        jsonResult = gson.toJson(strings);
+        Log.e(TAG,jsonResult);
+        jsonResult = gson.toJson(ints);
+        Log.e(TAG,jsonResult);
+
+        // Deserialization
+        int[] ints2 = gson.fromJson(jsonResult,int[].class);
+        for(int i:ints2){
+            Log.e(TAG,String.valueOf(i));
+        }
+
+        // Object Serialization
+        BagOfPrimitives bagOfPrimitives = new BagOfPrimitives();
+        Gson gson1 = new Gson();
+        String json = gson1.toJson(bagOfPrimitives);
+        Log.e(TAG,json);
+
+        // Object Deserialization
+        BagOfPrimitives bagOfPrimitives1 = gson.fromJson(json,BagOfPrimitives.class);
+        String result = "value1: " + String.valueOf(bagOfPrimitives1.getValue1())
+                +"\n value2: " + bagOfPrimitives1.getValue2()
+                +"\n value3: " + bagOfPrimitives1.getValue3();
+        Log.e(TAG,result);
+    }
+}
+
+class BagOfPrimitives{
+    private int value1 = 1;
+    private String value2 = "abc";
+    private transient int value3 = 3;
+    private int value4 = 4;
+    private String value5 = "def";
+
+    BagOfPrimitives(){
+
+    }
+
+    public int getValue1(){
+        return value1;
+    }
+
+    public String getValue2(){
+        return value2;
+    }
+
+    public int getValue3(){
+        return value3;
     }
 }
