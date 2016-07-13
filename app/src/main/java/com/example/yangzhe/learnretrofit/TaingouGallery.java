@@ -5,7 +5,7 @@ package com.example.yangzhe.learnretrofit;
  */
 public class TaingouGallery {
     public String description;
-    public String image_url;
+    public int id;
 
     public String getDescription(){
         return description;

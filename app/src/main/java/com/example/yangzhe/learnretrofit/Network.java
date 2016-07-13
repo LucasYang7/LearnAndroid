@@ -20,7 +20,7 @@ public class Network {
         if(tngouAPI == null){
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
-                    .baseUrl("http://zhuangbi.info/")
+                    .baseUrl("http://www.tngou.net/")
                     .addConverterFactory(gsonConverterFactory)
                     .addCallAdapterFactory(rxJavaCallAdapterFactory)
                     .build();

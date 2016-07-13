@@ -7,10 +7,12 @@ import android.util.Log;
 import com.example.yangzhe.learnactivity.R;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 public class RetrofitActivity extends AppCompatActivity {
@@ -44,7 +46,30 @@ public class RetrofitActivity extends AppCompatActivity {
         };
 
         Network.getTngouAPI()
-                .search("可爱")
+                .search()
+                .map(new Func1<TngouJson, List<TaingouGallery>>() { //因为Json结果中还包含有其他的信息，所以要将json转换为List<TaingouGallery>从而剥离出有效的信息
+                    @Override
+                    public List<TaingouGallery> call(TngouJson tngouJson) {
+                        Log.e(TAG,String.valueOf(tngouJson.status));
+                        int size = tngouJson.taingouGalleryList.size();
+                        Log.e(TAG,String.valueOf(size));
+                        Log.e(TAG,String.valueOf(tngouJson.taingouGalleryList.get(6).id) + " " +
+                                tngouJson.taingouGalleryList.get(6).description);
+                        // return tngouJson.taingouGalleryList;
+
+                        // 新建一个 List<TaingouGallery> taingouGalleryList ，这样做是为了方便转换json中的描述字段信息
+                        List<TaingouGallery> taingouGalleryList = new ArrayList<TaingouGallery>();
+                        for(int i = 0;i < size;i++){
+                            Log.e(TAG,String.valueOf(i + tngouJson.taingouGalleryList.get(i).description));
+                            TaingouGallery taingouGallery = new TaingouGallery();
+                            taingouGallery.description = tngouJson.taingouGalleryList.get(i).description;
+                            taingouGallery.id = tngouJson.taingouGalleryList.get(i).id;
+                            taingouGalleryList.add(taingouGallery);
+                        }
+                        return taingouGalleryList;
+
+                    }
+                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
