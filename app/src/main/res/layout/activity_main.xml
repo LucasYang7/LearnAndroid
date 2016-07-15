@@ -101,6 +101,12 @@
                 android:text="Goto Learn Retrofit Activity"
                 android:id="@+id/buttonGotoLearnRetrofit"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="goto Learn PhotoView"
+                android:id="@+id/buttonGotoLearnPhotoView"/>
+
         </LinearLayout>
     </ScrollView>
 

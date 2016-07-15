@@ -40,7 +40,8 @@
         <activity android:name="com.example.yangzhe.learnlayout.LearnSwipeRereshLayoutActivity" />
         <activity android:name="com.example.yangzhe.learnrxjava.LearnRxJavaActivity" />
         <activity android:name="com.example.yangzhe.learnpicasso.PicassoActivity" />
-        <activity android:name="com.example.yangzhe.learnretrofit.RetrofitActivity"></activity>
+        <activity android:name="com.example.yangzhe.learnretrofit.RetrofitActivity" />
+        <activity android:name="com.example.yangzhe.learnphotoview.ViewPagerActivity"></activity>
     </application>
 
 </manifest>
