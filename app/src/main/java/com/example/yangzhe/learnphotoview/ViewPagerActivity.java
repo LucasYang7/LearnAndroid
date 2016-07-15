@@ -9,10 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yangzhe.learnactivity.R;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import uk.co.senab.photoview.PhotoView;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class ViewPagerActivity extends AppCompatActivity {
 
@@ -27,17 +30,24 @@ public class ViewPagerActivity extends AppCompatActivity {
     }
 
     static class SamplePagerAdapter extends PagerAdapter{
-        /*
-        private static final int[] sDrawables = {R.drawable.ic_empty,
-                R.drawable.ic_error,
-                R.drawable.ic_stub};
-        */
-        private ArrayList<Integer> mDrawableList = new ArrayList<Integer>();
+
+        private ArrayList<String> mMeinvList = new ArrayList<String>();
         public SamplePagerAdapter(){
-            mDrawableList.add(R.drawable.ic_empty);
-            mDrawableList.add(R.drawable.ic_stub);
-            mDrawableList.add(R.drawable.ic_error);
-            mDrawableList.add(R.mipmap.ic_launcher);
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t01.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t02.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t03.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t04.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t05.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t06.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t07.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t08.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t09.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t10.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t11.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t12.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t13.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t14.jpg");
+            mMeinvList.add("http://pic.mmfile.net/2015/06/01t15.jpg");
         }
 
         @Override
@@ -50,16 +60,28 @@ public class ViewPagerActivity extends AppCompatActivity {
         public Object instantiateItem(ViewGroup container, int position) {
             Context context = container.getContext();
             PhotoView photoView = new PhotoView(context);
-            photoView.setImageResource(mDrawableList.get(position));
-
+            final PhotoViewAttacher photoViewAttacher = new PhotoViewAttacher(photoView);
             container.addView(photoView, ViewPager.LayoutParams.MATCH_PARENT,
                     ViewPager.LayoutParams.MATCH_PARENT);
+            Picasso.with(context)
+                    .load(mMeinvList.get(position))
+                    .into(photoView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            photoViewAttacher.update();
+                        }
+
+                        @Override
+                        public void onError() {
+
+                        }
+                    });
             return photoView;
         }
 
         @Override
         public int getCount() {
-            return mDrawableList.size();
+            return mMeinvList.size();
         }
 
         @Override
