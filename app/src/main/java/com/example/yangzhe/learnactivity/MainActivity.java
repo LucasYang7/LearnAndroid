@@ -15,6 +15,7 @@ import com.example.yangzhe.learnhandler.HandlerActivity;
 import com.example.yangzhe.learnjson.LearnJsonActivity;
 import com.example.yangzhe.learnlayout.LearnSwipeRereshLayoutActivity;
 import com.example.yangzhe.learnlayout.StaggeredGridLayoutActivity;
+import com.example.yangzhe.learnphotoview.PhotoViewActivity;
 import com.example.yangzhe.learnphotoview.ViewPagerActivity;
 import com.example.yangzhe.learnpicasso.PicassoActivity;
 import com.example.yangzhe.learnretrofit.RetrofitActivity;
@@ -55,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoLearnRetrofitActivity.setOnClickListener(click);
         Button btnGotoLearnPhotoView = (Button)findViewById(R.id.buttonGotoLearnPhotoView);
         btnGotoLearnPhotoView.setOnClickListener(click);
+        Button btnGotoLearnPhotoViewAndToolbar = (Button)findViewById(R.id.buttonGotoLearnPhotoViewAndToolbar);
+        btnGotoLearnPhotoViewAndToolbar.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -124,6 +127,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.buttonGotoLearnPhotoView:
                     gotoOtherActivity(ViewPagerActivity.class);
+                    break;
+
+                case R.id.buttonGotoLearnPhotoViewAndToolbar:
+                    gotoOtherActivity(PhotoViewActivity.class);
                     break;
 
                 default:

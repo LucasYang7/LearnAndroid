@@ -107,6 +107,12 @@
                 android:text="goto Learn PhotoView"
                 android:id="@+id/buttonGotoLearnPhotoView"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="goto Learn PhotoView and ViewPager,Toolbar"
+                android:id="@+id/buttonGotoLearnPhotoViewAndToolbar"/>
+
         </LinearLayout>
     </ScrollView>
 
