@@ -41,7 +41,7 @@ public class PhotoViewActivity extends AppCompatActivity {
         });
         mViewPager = (ViewPager)findViewById(R.id.view_pager2);
         mViewPager.setAdapter(new SamplePagerAdapter2());
-
+        mViewPager.setCurrentItem(5);            //指定ViewPager显示的初始化下标(下标值从0开始)
         /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
