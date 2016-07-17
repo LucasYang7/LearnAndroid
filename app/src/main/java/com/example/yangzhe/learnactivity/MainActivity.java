@@ -143,7 +143,11 @@ public class MainActivity extends AppCompatActivity {
      * goto other activity
      * */
     private void gotoOtherActivity(Class clazz){
-        startActivity(new Intent(MainActivity.this,clazz));
+        Bundle bundle = new Bundle();
+        bundle.putString("WhichActivity","MainActivity");
+        Intent intent = new Intent(MainActivity.this,clazz);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     @Override

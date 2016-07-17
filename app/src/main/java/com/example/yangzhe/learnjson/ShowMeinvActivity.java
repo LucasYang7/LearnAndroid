@@ -30,6 +30,8 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
     private RecyclerView meinvRecyclerView;
     private GetMeinvPictureHandler getMeinvPictureHandler;
     ArrayList<InternetImageData> listInternetImageData = new ArrayList<InternetImageData>();
+    public static ArrayList<InternetImageData> staticListInternetImageData = new ArrayList<InternetImageData>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,6 +138,7 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
                         showMeinvActivity.meinvRecyclerView.setLayoutManager(staggeredGridLayoutManager);
                         showMeinvActivity.meinvRecyclerView.setAdapter(new MeinvRecyclerViewAdapter(
                                 showMeinvActivity,showMeinvActivity.listInternetImageData));
+                        staticListInternetImageData = listInternetImageData;
                     }
                     break;
 
@@ -144,6 +147,11 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
             }
         }
     }
+
+    public static ArrayList<InternetImageData> getListInternetImageData(){
+        return staticListInternetImageData;
+    }
+
 
 }
 
