@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.yangzhe.data.InternetImageData;
 import com.example.yangzhe.learnactivity.MainActivity;
@@ -27,6 +28,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 public class PhotoViewActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
+    private static ProgressBar mProgressBar;
     private String whichActivity;
     private ArrayList<InternetImageData> internetImageDataArrayList = new ArrayList<InternetImageData>();
 
@@ -35,6 +37,7 @@ public class PhotoViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_view);
         mViewPager = (ViewPager)findViewById(R.id.view_pager2);
+        mProgressBar = (ProgressBar)findViewById(R.id.progressBarInPhotoView);
 
         Bundle bundle = getIntent().getExtras();
         whichActivity = bundle.getString("WhichActivity");   // 判断是由哪个Activity跳转到了当前的Activity
@@ -113,6 +116,7 @@ public class PhotoViewActivity extends AppCompatActivity {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
+            mProgressBar.setVisibility(View.VISIBLE);
             Context context = container.getContext();
             PhotoView photoView = new PhotoView(context);
             final PhotoViewAttacher photoViewAttacher = new PhotoViewAttacher(photoView);
@@ -121,10 +125,11 @@ public class PhotoViewActivity extends AppCompatActivity {
             Picasso.with(context)
                     .load(mMeinvList.get(position))
                     //.placeholder(R.drawable.ic_empty)
-                    .error(R.drawable.ic_error)
+                    .error(R.drawable.ic_empty)
                     .into(photoView, new Callback() {
                         @Override
                         public void onSuccess() {
+                            mProgressBar.setVisibility(View.GONE);
                             photoViewAttacher.update();
                         }
 
@@ -164,6 +169,7 @@ public class PhotoViewActivity extends AppCompatActivity {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
+            mProgressBar.setVisibility(View.VISIBLE);
             Context context = container.getContext();
             PhotoView photoView = new PhotoView(context);
             final PhotoViewAttacher photoViewAttacher = new PhotoViewAttacher(photoView);
@@ -172,10 +178,11 @@ public class PhotoViewActivity extends AppCompatActivity {
             Picasso.with(context)
                     .load(mMeinvList.get(position))
                     //.placeholder(R.drawable.ic_empty)
-                    .error(R.drawable.ic_error)
+                    .error(R.drawable.ic_empty)
                     .into(photoView, new Callback() {
                         @Override
                         public void onSuccess() {
+                            mProgressBar.setVisibility(View.GONE);
                             photoViewAttacher.update();
                         }
 
