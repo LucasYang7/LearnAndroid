@@ -37,7 +37,6 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
     private MeinvRecyclerViewAdapter meinvRecyclerViewAdapter;
     Context mContext;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +77,16 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
         meinvSwipeRefreshLayout.setColorSchemeResources(R.color.colorSwipeRefreshLayoutRed,
                 R.color.colorSwipeRefreshLayoutGreen,
                 R.color.colorSwipeRefreshLayoutBlue);
-    }
+        // auto refresh when into the ShowMeinvActivity
+        meinvSwipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                meinvSwipeRefreshLayout.setRefreshing(true);
+                getMeinvDataList();
+            }
+        });
+
+    }//onCreate
 
     public void getMeinvDataList(){
         new Thread(new Runnable() {
