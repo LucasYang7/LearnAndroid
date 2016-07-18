@@ -20,8 +20,16 @@ public class MeinvRecyclerViewAdapter extends RecyclerView.Adapter<MeinvRecycler
     private List<InternetImageData> itemList;
     private Context context;
 
+    public MeinvRecyclerViewAdapter(Context context){
+        this.context = context;
+    }
+
     public MeinvRecyclerViewAdapter(Context context,List<InternetImageData> itemList){
         this.context = context;
+        this.itemList = itemList;
+    }
+
+    public void setItemList(List<InternetImageData> itemList){
         this.itemList = itemList;
     }
 

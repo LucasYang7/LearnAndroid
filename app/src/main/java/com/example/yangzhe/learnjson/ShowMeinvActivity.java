@@ -1,17 +1,20 @@
 package com.example.yangzhe.learnjson;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.yangzhe.adapter.MeinvRecyclerViewAdapter;
@@ -31,11 +34,17 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
     private GetMeinvPictureHandler getMeinvPictureHandler;
     ArrayList<InternetImageData> listInternetImageData = new ArrayList<InternetImageData>();
     public static ArrayList<InternetImageData> staticListInternetImageData = new ArrayList<InternetImageData>();
+    private MeinvRecyclerViewAdapter meinvRecyclerViewAdapter;
+    Context mContext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_meinv);
+
+        mContext = ShowMeinvActivity.this;
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,7 +55,10 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
         meinvRecyclerView.setHasFixedSize(true);
         meinvRecyclerView.setLayoutManager(staggeredGridLayoutManager);
         // set an empty recyclerview to solve meinvSwipeRefreshLayout not showing in first time.
-        meinvRecyclerView.setAdapter(new EmptyMeinvRecyclerViewAdapter());
+        meinvRecyclerViewAdapter = new MeinvRecyclerViewAdapter(ShowMeinvActivity.this);
+        meinvRecyclerViewAdapter.setItemList(listInternetImageData);
+        meinvRecyclerView.setAdapter(meinvRecyclerViewAdapter);
+        meinvRecyclerView.addOnScrollListener(new OnVerticalScrollListener2());
 
         getMeinvPictureHandler = new GetMeinvPictureHandler(this);
 
@@ -132,12 +144,16 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
                         return;
                     else{
                         // set RecyclerView's layout and adapter
+                        /*
                         StaggeredGridLayoutManager staggeredGridLayoutManager =
                                 new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
                         showMeinvActivity.meinvRecyclerView.setHasFixedSize(true);
                         showMeinvActivity.meinvRecyclerView.setLayoutManager(staggeredGridLayoutManager);
                         showMeinvActivity.meinvRecyclerView.setAdapter(new MeinvRecyclerViewAdapter(
                                 showMeinvActivity,showMeinvActivity.listInternetImageData));
+                        */
+                        meinvRecyclerViewAdapter.setItemList(listInternetImageData);
+                        meinvRecyclerViewAdapter.notifyDataSetChanged();
                         staticListInternetImageData = listInternetImageData;
                     }
                     break;
@@ -150,6 +166,75 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
 
     public static ArrayList<InternetImageData> getListInternetImageData(){
         return staticListInternetImageData;
+    }
+
+    /**
+     * 为RecyclerView设置是否到达顶部和底部的事件监听
+     * 有问题:会调用多次canScrollVertically()函数
+     * */
+    class OnVerticalScrollListener extends RecyclerView.OnScrollListener{
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            //super.onScrolled(recyclerView, dx, dy);
+            if(recyclerView.canScrollVertically(-1) == false){
+                onScrolledToTop();
+            }else if(recyclerView.canScrollVertically(1) == false){
+                onScrolledToDown();
+            }
+        }
+
+        public void onScrolledToTop(){
+            Toast.makeText(mContext,"已经滑到顶部了",Toast.LENGTH_SHORT).show();
+        }
+
+        public void onScrolledToDown(){
+            Toast.makeText(mContext,"已经滑到底部了，没有数据了",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 判断当前显示的item是否为RecyclerView中的最后一个item
+     * */
+    private boolean isLastItemDisplaying(RecyclerView recyclerView){
+        if(recyclerView.getAdapter().getItemCount() != 0){
+            StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager)
+                    recyclerView.getLayoutManager();
+            int [] lastCompletelyVisiblePostions = staggeredGridLayoutManager.findLastCompletelyVisibleItemPositions(null);
+            int lastCompletelyVisibleItemPosition = 0;   //找到当前页面最后完整显示的item的位置 　
+            for(int i = 0;i < lastCompletelyVisiblePostions.length;i++){
+                if(lastCompletelyVisiblePostions[i] > lastCompletelyVisibleItemPosition){
+                    lastCompletelyVisibleItemPosition = lastCompletelyVisiblePostions[i];
+                }
+            }
+            if (lastCompletelyVisibleItemPosition != RecyclerView.NO_POSITION &&
+                    lastCompletelyVisibleItemPosition == recyclerView.getAdapter().getItemCount() - 1)
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * 为RecyclerView设置是否到达顶部和底部的事件监听
+     * */
+    class OnVerticalScrollListener2 extends RecyclerView.OnScrollListener{
+        /*
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            if(isLastItemDisplaying(recyclerView) == true){
+                Toast.makeText(mContext,"已经滑到底部了，没有数据了",Toast.LENGTH_SHORT).show();
+            }
+        }
+        */
+
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            // RecyclerView已经滑到底部且RecyclerView处于静止状态
+            if(isLastItemDisplaying(recyclerView) == true && newState == RecyclerView.SCROLL_STATE_IDLE){
+                Toast.makeText(mContext,"已经滑到底部了，没有数据了",Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 
