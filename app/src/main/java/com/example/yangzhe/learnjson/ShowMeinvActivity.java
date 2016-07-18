@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -65,9 +66,8 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-                //getMeinvDataList();
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
 
@@ -81,8 +81,7 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
         meinvSwipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
-                meinvSwipeRefreshLayout.setRefreshing(true);
-                getMeinvDataList();
+               loadMeinvDataFromInternet();
             }
         });
 
@@ -123,10 +122,17 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
         }).start();
     }
 
-    @Override
-    public void onRefresh() {
+    /**
+     * 从网站上下载妹子图片
+     * */
+    public void loadMeinvDataFromInternet(){
         meinvSwipeRefreshLayout.setRefreshing(true);
         getMeinvDataList();
+    }
+
+    @Override
+    public void onRefresh() {
+        loadMeinvDataFromInternet();
     }
 
     private class GetMeinvPictureHandler extends Handler{
@@ -155,6 +161,7 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
                                 .listInternetImageData);
                         showMeinvActivity.meinvRecyclerViewAdapter.notifyDataSetChanged();
                         staticListInternetImageData = showMeinvActivity.listInternetImageData;
+                        Toast.makeText(mContext,"从网站上下载了一些图片。。。",Toast.LENGTH_SHORT).show();
                     }
                     break;
 
@@ -237,7 +244,8 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
             super.onScrollStateChanged(recyclerView, newState);
             // RecyclerView已经滑到底部且RecyclerView处于静止状态
             if(isLastItemDisplaying(recyclerView) == true && newState == RecyclerView.SCROLL_STATE_IDLE){
-                Toast.makeText(mContext,"已经滑到底部了，没有图片了。。。",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext,"已经滑到底部了，没有图片了。。。",Toast.LENGTH_SHORT).show();
+               loadMeinvDataFromInternet();
             }
         }
     }
