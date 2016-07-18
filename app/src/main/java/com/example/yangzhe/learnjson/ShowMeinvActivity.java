@@ -60,7 +60,7 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
         meinvRecyclerView.setAdapter(meinvRecyclerViewAdapter);
         meinvRecyclerView.addOnScrollListener(new OnVerticalScrollListener2());
 
-        getMeinvPictureHandler = new GetMeinvPictureHandler(this);
+        getMeinvPictureHandler = new GetMeinvPictureHandler(ShowMeinvActivity.this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAddMeinvPicture);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +95,7 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
                     msg.obj = jsonResult;
                     msg.sendToTarget();
                 }else{
-                    Collections.reverse(listInternetImageData);
+                    //Collections.reverse(listInternetImageData);
                     ArrayList<InternetImageData> listOnceInternetImageData = JsonParser.getInternetPicInfoFromJson(
                             jsonResult,numberOfPicture);
                     listInternetImageData.addAll(listOnceInternetImageData);
@@ -106,7 +106,7 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
                     }
                     //test
 
-                    Collections.reverse(listInternetImageData);
+                    //Collections.reverse(listInternetImageData);
                     Message msg = Message.obtain(getMeinvPictureHandler);
                     msg.what = 100;
                     msg.sendToTarget();
@@ -143,18 +143,10 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
                     if(showMeinvActivity == null)
                         return;
                     else{
-                        // set RecyclerView's layout and adapter
-                        /*
-                        StaggeredGridLayoutManager staggeredGridLayoutManager =
-                                new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
-                        showMeinvActivity.meinvRecyclerView.setHasFixedSize(true);
-                        showMeinvActivity.meinvRecyclerView.setLayoutManager(staggeredGridLayoutManager);
-                        showMeinvActivity.meinvRecyclerView.setAdapter(new MeinvRecyclerViewAdapter(
-                                showMeinvActivity,showMeinvActivity.listInternetImageData));
-                        */
-                        meinvRecyclerViewAdapter.setItemList(listInternetImageData);
-                        meinvRecyclerViewAdapter.notifyDataSetChanged();
-                        staticListInternetImageData = listInternetImageData;
+                        showMeinvActivity.meinvRecyclerViewAdapter.setItemList(showMeinvActivity
+                                .listInternetImageData);
+                        showMeinvActivity.meinvRecyclerViewAdapter.notifyDataSetChanged();
+                        staticListInternetImageData = showMeinvActivity.listInternetImageData;
                     }
                     break;
 
@@ -170,9 +162,10 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
 
     /**
      * 为RecyclerView设置是否到达顶部和底部的事件监听
-     * 有问题:会调用多次canScrollVertically()函数
+     * 通过canScrollVertically()函数来判断是否已经到达了顶部和底部
      * */
-    class OnVerticalScrollListener extends RecyclerView.OnScrollListener{
+    class OnVerticalScrollListener1 extends RecyclerView.OnScrollListener{
+        /*
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             //super.onScrolled(recyclerView, dx, dy);
@@ -190,49 +183,53 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
         public void onScrolledToDown(){
             Toast.makeText(mContext,"已经滑到底部了，没有数据了",Toast.LENGTH_SHORT).show();
         }
-    }
+        */
 
-    /**
-     * 判断当前显示的item是否为RecyclerView中的最后一个item
-     * */
-    private boolean isLastItemDisplaying(RecyclerView recyclerView){
-        if(recyclerView.getAdapter().getItemCount() != 0){
-            StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager)
-                    recyclerView.getLayoutManager();
-            int [] lastCompletelyVisiblePostions = staggeredGridLayoutManager.findLastCompletelyVisibleItemPositions(null);
-            int lastCompletelyVisibleItemPosition = 0;   //找到当前页面最后完整显示的item的位置 　
-            for(int i = 0;i < lastCompletelyVisiblePostions.length;i++){
-                if(lastCompletelyVisiblePostions[i] > lastCompletelyVisibleItemPosition){
-                    lastCompletelyVisibleItemPosition = lastCompletelyVisiblePostions[i];
-                }
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            if(recyclerView.canScrollVertically(-1) == false && newState == RecyclerView.SCROLL_STATE_IDLE){
+                Toast.makeText(mContext,"已经滑到顶部了",Toast.LENGTH_SHORT).show();
+            }else if(recyclerView.canScrollVertically(1) == false && newState == RecyclerView.SCROLL_STATE_IDLE){
+                Toast.makeText(mContext,"已经滑到底部了，没有图片了。。。",Toast.LENGTH_SHORT).show();
             }
-            if (lastCompletelyVisibleItemPosition != RecyclerView.NO_POSITION &&
-                    lastCompletelyVisibleItemPosition == recyclerView.getAdapter().getItemCount() - 1)
-                return true;
         }
-        return false;
     }
 
     /**
-     * 为RecyclerView设置是否到达顶部和底部的事件监听
+     * 为RecyclerView设置是否到底部的事件监听
+     * 通过staggeredGridLayoutManager.findLastCompletelyVisibleItemPositions
+     * 来找出最后一个完成出现的item
      * */
     class OnVerticalScrollListener2 extends RecyclerView.OnScrollListener{
-        /*
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-            if(isLastItemDisplaying(recyclerView) == true){
-                Toast.makeText(mContext,"已经滑到底部了，没有数据了",Toast.LENGTH_SHORT).show();
+
+        /**
+         * 判断当前显示的item是否为RecyclerView中的最后一个item
+         * */
+        private boolean isLastItemDisplaying(RecyclerView recyclerView){
+            if(recyclerView.getAdapter().getItemCount() != 0){
+                StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager)
+                        recyclerView.getLayoutManager();
+                int [] lastCompletelyVisiblePostions = staggeredGridLayoutManager.findLastCompletelyVisibleItemPositions(null);
+                int lastCompletelyVisibleItemPosition = 0;   //找到当前页面最后完整显示的item的位置 　
+                for(int i = 0;i < lastCompletelyVisiblePostions.length;i++){
+                    if(lastCompletelyVisiblePostions[i] > lastCompletelyVisibleItemPosition){
+                        lastCompletelyVisibleItemPosition = lastCompletelyVisiblePostions[i];
+                    }
+                }
+                if (lastCompletelyVisibleItemPosition != RecyclerView.NO_POSITION &&
+                        lastCompletelyVisibleItemPosition == recyclerView.getAdapter().getItemCount() - 1)
+                    return true;
             }
+            return false;
         }
-        */
 
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
             // RecyclerView已经滑到底部且RecyclerView处于静止状态
             if(isLastItemDisplaying(recyclerView) == true && newState == RecyclerView.SCROLL_STATE_IDLE){
-                Toast.makeText(mContext,"已经滑到底部了，没有数据了",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"已经滑到底部了，没有图片了。。。",Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -240,7 +237,7 @@ public class ShowMeinvActivity extends AppCompatActivity implements SwipeRefresh
 
 }
 
-
+/*
 class EmptyMeinvRecyclerViewAdapter extends RecyclerView.Adapter<MeinvRecyclerViewHolder>{
 
     @Override
@@ -258,3 +255,4 @@ class EmptyMeinvRecyclerViewAdapter extends RecyclerView.Adapter<MeinvRecyclerVi
         return 0;
     }
 }
+*/
