@@ -33,7 +33,7 @@ public class BottomTabLayoutActivity extends AppCompatActivity {
         mViewPager = (ViewPager)findViewById(R.id.viewPagerInBottomTabActivity);
         mViewPager.setAdapter(mCustomeFragmentPagerAdapter);
         mTabLayout = (TabLayout)findViewById(R.id.bottomTabLayout);
-        mTabLayout.setupWithViewPager(mViewPager);            //将TabLayout与ViewPager关联起来
+        mTabLayout.setupWithViewPager(mViewPager);  //将TabLayout与ViewPager关联起来，这样当其中一个滑动状态改变时，另一个也会跟着改变
 
         oneTab = mTabLayout.getTabAt(0);
         oneTab.setCustomView(mCustomeFragmentPagerAdapter.getTabView(0));
@@ -89,9 +89,13 @@ public class BottomTabLayoutActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * 设置被选中的tab的背景
+     * */
     public void setSelectedTabBackgroud(int position){
         mViewPager.setCurrentItem(position);
         TabLayout.Tab tab = null;
+        int drawableId = mCustomeFragmentPagerAdapter.drawableIds[position][1];
         switch(position){
             case 0:
                 tab = oneTab;
@@ -99,6 +103,7 @@ public class BottomTabLayoutActivity extends AppCompatActivity {
 
             case 1:
                 tab = twoTab;
+
                 break;
 
             case 2:
@@ -116,14 +121,18 @@ public class BottomTabLayoutActivity extends AppCompatActivity {
 
         ImageView imageView = (ImageView) tab.getCustomView()
                 .findViewById(R.id.imageViewInBottomLayout);
-        imageView.setImageResource(R.mipmap.ic_launcher);
+        imageView.setImageResource(drawableId);
         TextView textView = (TextView) tab.getCustomView()
                 .findViewById(R.id.textViewInBottomLayout);
         textView.setTextColor(getResources().getColor(R.color.colorSelectedTabText));
     }
 
+    /**
+     * 设置未被选中的tab的背景
+     * */
     public void setUnSelectedTabBackgroud(int position){
         TabLayout.Tab tab = null;
+        int drawableId = mCustomeFragmentPagerAdapter.drawableIds[position][0];
         switch(position){
             case 0:
                 tab = oneTab;
@@ -148,7 +157,7 @@ public class BottomTabLayoutActivity extends AppCompatActivity {
 
         ImageView imageView = (ImageView) tab.getCustomView()
                 .findViewById(R.id.imageViewInBottomLayout);
-        imageView.setImageResource(R.drawable.ic_stub);
+        imageView.setImageResource(drawableId);
         TextView textView = (TextView) tab.getCustomView()
                 .findViewById(R.id.textViewInBottomLayout);
         textView.setTextColor(getResources().getColor(R.color.colorTabText));

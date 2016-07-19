@@ -22,7 +22,12 @@ import com.example.yangzhe.learnactivity.R;
  */
 public class CustomeFragmentPagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 4;
-    private final String[] tabTitles = {"one","two","three","four"};
+    private final String[] tabTitles = {"微信","通讯录","发现","我"};
+    public final int[][] drawableIds = {
+            {R.drawable.weixin,R.drawable.weixin_selected},
+            {R.drawable.contacts,R.drawable.contacts_selected},
+            {R.drawable.discovery,R.drawable.discovery_selected},
+            {R.drawable.me,R.drawable.me_selected}};
     private Context mContext;
 
     public CustomeFragmentPagerAdapter(FragmentManager fm,Context context) {

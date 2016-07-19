@@ -10,6 +10,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is two fragment!" />
+        android:text="这是通讯录界面!" />
 
 </LinearLayout>
