@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.yangzhe.bottomtablayout.BottomTabLayoutActivity;
 import com.example.yangzhe.learnasynctask.LearnAsyncTaskActivity;
 import com.example.yangzhe.learnhandler.HanderMessageActivity;
 import com.example.yangzhe.learnhandler.HandlerActivity;
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoLearnPhotoView.setOnClickListener(click);
         Button btnGotoLearnPhotoViewAndToolbar = (Button)findViewById(R.id.buttonGotoLearnPhotoViewAndToolbar);
         btnGotoLearnPhotoViewAndToolbar.setOnClickListener(click);
+        Button btnGotoBottomTabLayout = (Button)findViewById(R.id.buttonGotoBottomTabLayoutActivity);
+        btnGotoBottomTabLayout.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -131,6 +134,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.buttonGotoLearnPhotoViewAndToolbar:
                     gotoOtherActivity(PhotoViewActivity.class);
+                    break;
+
+                case R.id.buttonGotoBottomTabLayoutActivity:
+                    gotoOtherActivity(BottomTabLayoutActivity.class);
                     break;
 
                 default:

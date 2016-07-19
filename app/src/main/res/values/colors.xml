@@ -6,4 +6,6 @@
     <color name="colorSwipeRefreshLayoutRed">#FF0000</color>
     <color name="colorSwipeRefreshLayoutGreen">#00FF00</color>
     <color name="colorSwipeRefreshLayoutBlue">#0000FF</color>
+    <color name="colorTabText">#888888</color>
+    <color name="colorSelectedTabText">#FFFFFF</color>
 </resources>
