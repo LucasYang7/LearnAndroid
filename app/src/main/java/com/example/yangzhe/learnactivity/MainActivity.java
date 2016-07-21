@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.yangzhe.bottomtablayout.BottomTabLayoutActivity;
+import com.example.yangzhe.jsoup.JsoupActivity;
 import com.example.yangzhe.learnasynctask.LearnAsyncTaskActivity;
 import com.example.yangzhe.learnhandler.HanderMessageActivity;
 import com.example.yangzhe.learnhandler.HandlerActivity;
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoLearnPhotoViewAndToolbar.setOnClickListener(click);
         Button btnGotoBottomTabLayout = (Button)findViewById(R.id.buttonGotoBottomTabLayoutActivity);
         btnGotoBottomTabLayout.setOnClickListener(click);
+        Button btnGotoJsoup = (Button)findViewById(R.id.buttonGotoJsoupActivity);
+        btnGotoJsoup.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -138,6 +141,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.buttonGotoBottomTabLayoutActivity:
                     gotoOtherActivity(BottomTabLayoutActivity.class);
+                    break;
+
+                case R.id.buttonGotoJsoupActivity:
+                    gotoOtherActivity(JsoupActivity.class);
                     break;
 
                 default:

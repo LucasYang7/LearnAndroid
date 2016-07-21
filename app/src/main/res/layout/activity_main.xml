@@ -119,6 +119,12 @@
                 android:text="goto Bottom TabLayout Activity"
                 android:id="@+id/buttonGotoBottomTabLayoutActivity"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="goto jsoup activity"
+                android:id="@+id/buttonGotoJsoupActivity"/>
+
         </LinearLayout>
     </ScrollView>
 
