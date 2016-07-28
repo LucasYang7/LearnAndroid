@@ -27,18 +27,20 @@ public class LearnAsyncTaskActivity extends AppCompatActivity {
     private static final String TAG = "LearnAsyncTaskActivity";
     private static final String TAG_Baidu = "BaiduContent";
     private Button btnShowWebContent;
-    private TextView textViewShowWebContent;
+    private TextView textViewShowWebContent1;
+    private TextView textViewShowWebContent2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn_async_task);
-        textViewShowWebContent = (TextView)findViewById(R.id.textViewShowWebContent);
+        textViewShowWebContent1 = (TextView)findViewById(R.id.textViewShowWebContent1);
+        textViewShowWebContent2 = (TextView)findViewById(R.id.textViewShowWebContent2);
         btnShowWebContent = (Button)findViewById(R.id.buttonShowWebContent);
         btnShowWebContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DownloadWebPageTask().execute(new String[]{"https://www.baidu.com"});
-                new DownloadWebPageTask2().execute(new String[]{"https://www.baidu.com"});
+                new DownloadWebPageTask().execute(new String[]{"http://www.mzitu.com/japan"});
+                new DownloadWebPageTask2().execute(new String[]{"http://www.mzitu.com/japan"});
             }
         });
     }
@@ -63,13 +65,13 @@ public class LearnAsyncTaskActivity extends AppCompatActivity {
                 StringBuilder stringBuilder = new StringBuilder();
                 String strLine;
                 while((strLine = bufferedReader.readLine()) != null){
-                    Log.e(TAG,strLine);
+                    //Log.e(TAG,strLine);
                     stringBuilder.append(strLine);
                     stringBuilder.append("\n");
                 }
                 bufferedReader.close();
                 result = stringBuilder.toString();
-                Log.e(TAG,result);
+                //Log.e(TAG,result);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (UnsupportedEncodingException e) {
@@ -85,8 +87,8 @@ public class LearnAsyncTaskActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             result = "From HttpURLConnection:\n" + result;
-            //textViewShowWebContent.setText(result);
-            Log.e(TAG_Baidu,result);
+            textViewShowWebContent1.setText(result+"\n\n");
+            //Log.e(TAG_Baidu,result);
         }
     }
 
@@ -105,8 +107,8 @@ public class LearnAsyncTaskActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             result = "From OKHttp:\n" + result;
-            //textViewShowWebContent.setText(result);
-            Log.e(TAG_Baidu,result);
+            textViewShowWebContent2.setText(result);
+            //Log.e(TAG_Baidu,result);
         }
     }
 
@@ -121,7 +123,7 @@ public class LearnAsyncTaskActivity extends AppCompatActivity {
                 .build();
         try{
             Response response = okHttpClient.newCall(request).execute();
-            responseBody =  response.body().string();
+            responseBody = response.body().string();
         }catch (IOException e){
             e.printStackTrace();
         }

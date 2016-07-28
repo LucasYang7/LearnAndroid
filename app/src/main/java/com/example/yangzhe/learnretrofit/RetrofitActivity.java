@@ -46,7 +46,7 @@ public class RetrofitActivity extends AppCompatActivity {
         };
 
         Network.getTngouAPI()
-                .search()
+                .search()      // tngouAPI每调用一次search()方法就相当于进行了一次Http请求
                 .map(new Func1<TngouJson, List<TaingouGallery>>() { //因为Json结果中还包含有其他的信息，所以要将json转换为List<TaingouGallery>从而剥离出有效的信息
                     @Override
                     public List<TaingouGallery> call(TngouJson tngouJson) {

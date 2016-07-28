@@ -8,6 +8,7 @@ import rx.Observable;
 
 /**
  * Created by yangzhe on 16-7-12.
+ * Retrofit 将Http API转换为一个Java interface
  */
 public interface TngouAPI {
     @GET("tnfs/api/classify")                  // Zhuangbi　Api的URL所对应的子路径.  http://zhuangbi.info/search

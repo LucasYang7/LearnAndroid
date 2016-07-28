@@ -22,9 +22,9 @@ public class Network {
                     .client(okHttpClient)
                     .baseUrl("http://www.tngou.net/")
                     .addConverterFactory(gsonConverterFactory)
-                    .addCallAdapterFactory(rxJavaCallAdapterFactory)
+                    .addCallAdapterFactory(rxJavaCallAdapterFactory) //表示使用RxJava来进行处理异步请求
                     .build();
-            tngouAPI = retrofit.create(TngouAPI.class);
+            tngouAPI = retrofit.create(TngouAPI.class);    // 实现TngouAPI这个接口
         }
         return tngouAPI;
     }
