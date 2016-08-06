@@ -8,4 +8,6 @@
     <color name="colorSwipeRefreshLayoutBlue">#0000FF</color>
     <color name="colorTabText">#666666</color>
     <color name="colorSelectedTabText">#16FF4B</color>
+    <color name="colorPhotoViewBackGround">#AA000000</color>
+    <color name="colorTextViewInPhotoView">#FFFFFF</color>
 </resources>
