@@ -13,12 +13,14 @@
     tools:context="com.example.yangzhe.learnphotoview.PhotoViewActivity"
     tools:showIn="@layout/activity_photo_view">
 
-    <ProgressBar
+    <!--
+     <ProgressBar
         android:id="@+id/progressBarInPhotoView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
+    -->
 
     <com.example.yangzhe.learnphotoview.HackyViewPager
         android:id="@+id/view_pager2"
