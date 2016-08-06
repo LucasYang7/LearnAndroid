@@ -26,6 +26,8 @@ import com.example.yangzhe.learnpicasso.PicassoActivity;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import uk.co.senab.photoview.PhotoView;
@@ -143,6 +145,15 @@ public class PhotoViewActivity extends AppCompatActivity {
             mMeinvList.add("http://pic.mmfile.net/2015/06/01t14.jpg");
             mMeinvList.add("http://pic.mmfile.net/2015/06/01t15.jpg");
             meinvUrlList = mMeinvList;
+
+            // 在MeituActivity中，在onCreate处进行初始化
+            int total = mMeinvList.size();
+            String url = mMeinvList.get(0);
+            //Resources resources = mContext.getResources();
+            //String text = String.format(resources.getString(R.string.index_photoview),index,total);
+            //text = text+"\t"+url;
+            String text = 1 + "/" + total + "\t" + url + "美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女";
+            mText.setText(text);
         }
 
         @Override
@@ -154,6 +165,7 @@ public class PhotoViewActivity extends AppCompatActivity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
 
+            /*
             if(position == 0){
                 int index = position + 1;
                 int total = mMeinvList.size();
@@ -165,22 +177,23 @@ public class PhotoViewActivity extends AppCompatActivity {
                 String text = index + "/" + total + "\t" + url + "美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女";
                 mText.setText(text);
             }
+            */
 
             //mProgressBar.setVisibility(View.VISIBLE);
             Context context = container.getContext();
-
             // 尝试从xml加载PhotoView
             LayoutInflater inflater = LayoutInflater.from(context);
             View view = inflater.inflate(R.layout.photo_view,container,false);
             PhotoView photoView = (PhotoView)view.findViewById(R.id.photoviewInXml);
             final ProgressBar progressBar = (ProgressBar)view.findViewById(R.id.progressBarInPhotoView2);
+            final TextView textView = (TextView)view.findViewById(R.id.textViewInPhotoView2);
             final PhotoViewAttacher photoViewAttacher = new PhotoViewAttacher(photoView);
             container.addView(view, ViewPager.LayoutParams.MATCH_PARENT,
                    ViewPager.LayoutParams.MATCH_PARENT);
             Picasso.with(context)
                     .load(mMeinvList.get(position))
                     //.placeholder(R.drawable.ic_empty)
-                    .error(R.drawable.ic_empty)
+                    //.error(R.drawable.ic_empty)
                     .into(photoView, new Callback() {
                         @Override
                         public void onSuccess() {
@@ -190,10 +203,11 @@ public class PhotoViewActivity extends AppCompatActivity {
 
                         @Override
                         public void onError() {
-
+                            progressBar.setVisibility(View.GONE);
+                            textView.setVisibility(View.VISIBLE);
                         }
                     });
-            return view;
+            return view;       // 这里返回ViewPager中一个item所对应的View
         }
 
         @Override
@@ -205,7 +219,7 @@ public class PhotoViewActivity extends AppCompatActivity {
         public boolean isViewFromObject(View view, Object object) {
             return view == object;
         }
-    }
+    }//SamplePagerAdapter2
 
     static class SamplePagerAdapter3 extends PagerAdapter {
 
