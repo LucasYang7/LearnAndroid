@@ -1,8 +1,11 @@
 package com.example.yangzhe.learnphotoview;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -21,6 +26,7 @@ import android.widget.Toast;
 import com.example.yangzhe.data.InternetImageData;
 import com.example.yangzhe.learnactivity.MainActivity;
 import com.example.yangzhe.learnactivity.R;
+import com.example.yangzhe.learndatabase.MyDatabaseHelper;
 import com.example.yangzhe.learnjson.ShowMeinvActivity;
 import com.example.yangzhe.learnpicasso.PicassoActivity;
 import com.squareup.picasso.Callback;
@@ -41,8 +47,13 @@ public class PhotoViewActivity extends AppCompatActivity {
     private String whichActivity;
     private ArrayList<InternetImageData> internetImageDataArrayList = new ArrayList<InternetImageData>();
     private static Context mContext;
-
+    MenuItem mFavorMenuItem;
+    MenuItem mUnFavorMenuItem;
     private static ArrayList<String> meinvUrlList = new ArrayList<String>();
+    private MyDatabaseHelper myDatabaseHelper;
+    private SQLiteDatabase mSQLiteDatabase;
+    int mPosition;
+    String mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +81,36 @@ public class PhotoViewActivity extends AppCompatActivity {
 
                 @Override
                 public void onPageSelected(int position) {
+                    boolean isFavorited = false;
+                    mPosition = position;
                     int index = position+1;
                     int total = meinvUrlList.size();
                     String url = meinvUrlList.get(position);
+
+                    Cursor cursor = mSQLiteDatabase.query("Favorites",null,null,null,null,null,null);
+                    if(cursor.moveToFirst()){
+                        do{
+                            String tempUrl = cursor.getString(cursor.getColumnIndex("pictureUrl"));
+                            if(tempUrl.equals(url)){    // already add favorites
+                                isFavorited = true;
+                                break;
+                            }
+                        }while(cursor.moveToNext());
+                    }
+                    cursor.close();
+
+                    if(isFavorited == true){
+                        resetUnFavorMenuItem();
+                    }else{
+                        resetFavorMenuItem();
+                    }
+
                     Log.e("url",""+ index + "\t" + url);
                     //Resources resources = mContext.getResources();
                     //String text = String.format(resources.getString(R.string.index_photoview),index,total);
                     //text = text+"\t"+url;
                     String text = index + "/" + total + "\t" + url + "美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女美女";
+                    mTitle = text;
                     mText.setText(text);
                 }
 
@@ -88,6 +121,9 @@ public class PhotoViewActivity extends AppCompatActivity {
             });
         }
 
+        // create database
+        myDatabaseHelper = new MyDatabaseHelper(PhotoViewActivity.this,"MeituFavorites.db",null,1);
+        mSQLiteDatabase = myDatabaseHelper.getReadableDatabase();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {  //为Toolbar上的返回按钮添加事件监听
@@ -272,6 +308,50 @@ public class PhotoViewActivity extends AppCompatActivity {
         public boolean isViewFromObject(View view, Object object) {
             return view == object;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.photo_view,menu);
+        mFavorMenuItem = menu.findItem(R.id.action_favor);
+        mUnFavorMenuItem = menu.findItem(R.id.action_unfavor);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.action_favor:
+                Toast.makeText(PhotoViewActivity.this,R.string.menu_favor,Toast.LENGTH_SHORT).show();
+                //sharePicture(mPosition);
+                ContentValues values = new ContentValues();
+                values.put("pictureUrl",meinvUrlList.get(mPosition));
+                values.put("title",mTitle);
+                mSQLiteDatabase.insert("Favorites",null,values);               // insert
+                resetUnFavorMenuItem();
+                return true;
+
+            case R.id.action_unfavor:
+                Toast.makeText(PhotoViewActivity.this,R.string.menu_cancel_favor,Toast.LENGTH_SHORT).show();
+                //downloadPicture(mPosition);
+                mSQLiteDatabase.delete("Favorites","pictureUrl = ?",new String[]{meinvUrlList.get(mPosition)}); // delete
+                resetFavorMenuItem();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    public void resetUnFavorMenuItem(){
+        mFavorMenuItem.setVisible(false);
+        mUnFavorMenuItem.setVisible(true);
+    }
+
+    public void resetFavorMenuItem(){
+        mFavorMenuItem.setVisible(true);
+        mUnFavorMenuItem.setVisible(false);
     }
 
 }

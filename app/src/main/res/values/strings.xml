@@ -16,4 +16,7 @@
     <string name="title_activity_jsoup">JsoupActivity</string>
 
     <string name="index_photoview">%1$d/%2$d</string>
+
+    <string name="menu_cancel_favor">取消收藏</string>
+    <string name="menu_favor">已经收藏</string>
 </resources>

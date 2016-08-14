@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.example.yangzhe.bottomtablayout.BottomTabLayoutActivity;
 import com.example.yangzhe.jsoup.JsoupActivity;
 import com.example.yangzhe.learnasynctask.LearnAsyncTaskActivity;
+import com.example.yangzhe.learndatabase.MyDatabaseHelper;
 import com.example.yangzhe.learnhandler.HanderMessageActivity;
 import com.example.yangzhe.learnhandler.HandlerActivity;
 import com.example.yangzhe.learnjson.LearnJsonActivity;
@@ -25,6 +26,9 @@ import com.example.yangzhe.learnrxjava.LearnRxJavaActivity;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivityLifeCycle";
+
+    private MyDatabaseHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoBottomTabLayout.setOnClickListener(click);
         Button btnGotoJsoup = (Button)findViewById(R.id.buttonGotoJsoupActivity);
         btnGotoJsoup.setOnClickListener(click);
+
+
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -136,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.buttonGotoLearnPhotoViewAndToolbar:
+                    dbHelper = new MyDatabaseHelper(MainActivity.this,"MeituFavorites.db",null,1);   // create database
+                    dbHelper.getWritableDatabase();
                     gotoOtherActivity(PhotoViewActivity.class);
                     break;
 
