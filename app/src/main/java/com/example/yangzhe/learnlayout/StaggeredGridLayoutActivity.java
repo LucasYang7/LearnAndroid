@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
@@ -15,6 +16,7 @@ import android.util.Log;
 import com.example.yangzhe.data.AlbumImageData;
 import com.example.yangzhe.learnactivity.R;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,10 +74,13 @@ public class StaggeredGridLayoutActivity extends AppCompatActivity {
             public void run() {
                 Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
                 ContentResolver contentResolver = getContentResolver();
+                File meituDir = new File(Environment.getExternalStorageDirectory(),"Meitu");
+                String meituFolderPath = meituDir.getPath();
+                meituFolderPath = "%" + meituFolderPath + "%";
+                Log.e("meituFolderPath",meituFolderPath);
                 // get jpeg and png file ,desc by time
-                Cursor cursor = contentResolver.query(uri,null,MediaStore.Images.Media.MIME_TYPE +
-                                "=\"image/jpeg\" or " + MediaStore.Images.Media.MIME_TYPE + "=\"image/png\"",
-                        null, MediaStore.Images.Media.DATE_MODIFIED + " desc");
+                Cursor cursor = contentResolver.query(uri,null,MediaStore.Images.Media.DATA + " like ? ",
+                        new String[]{meituFolderPath},MediaStore.Images.Media.DATE_MODIFIED + " desc");
                 if(cursor != null){
                     listAlbumImageData.clear();
                     while(cursor.moveToNext()){
