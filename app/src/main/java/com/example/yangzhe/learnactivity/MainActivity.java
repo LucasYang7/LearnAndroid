@@ -23,6 +23,7 @@ import com.example.yangzhe.learnphotoview.ViewPagerActivity;
 import com.example.yangzhe.learnpicasso.PicassoActivity;
 import com.example.yangzhe.learnretrofit.RetrofitActivity;
 import com.example.yangzhe.learnrxjava.LearnRxJavaActivity;
+import com.example.yangzhe.learnservice.LearnServiceActivity;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivityLifeCycle";
@@ -68,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoBottomTabLayout.setOnClickListener(click);
         Button btnGotoJsoup = (Button)findViewById(R.id.buttonGotoJsoupActivity);
         btnGotoJsoup.setOnClickListener(click);
-
-
+        Button btnGotoLearnServiceActivity = (Button)findViewById(R.id.buttonGotoLearnServiceActivity);
+        btnGotoLearnServiceActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -153,6 +154,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.buttonGotoJsoupActivity:
                     gotoOtherActivity(JsoupActivity.class);
+                    break;
+
+                case R.id.buttonGotoLearnServiceActivity:
+                    gotoOtherActivity(LearnServiceActivity.class);
                     break;
 
                 default:

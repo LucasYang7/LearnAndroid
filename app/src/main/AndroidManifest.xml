@@ -52,7 +52,14 @@
         <activity
             android:name="com.example.yangzhe.jsoup.JsoupActivity"
             android:label="@string/title_activity_jsoup"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name="com.example.yangzhe.learnservice.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name="com.example.yangzhe.learnservice.LearnServiceActivity"></activity>
     </application>
 
 </manifest>
