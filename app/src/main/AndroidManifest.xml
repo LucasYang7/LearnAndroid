@@ -59,7 +59,12 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name="com.example.yangzhe.learnservice.LearnServiceActivity"></activity>
+        <activity android:name="com.example.yangzhe.learnservice.LearnServiceActivity" />
+
+        <service
+            android:name="com.example.yangzhe.learnservice.ForegroundService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

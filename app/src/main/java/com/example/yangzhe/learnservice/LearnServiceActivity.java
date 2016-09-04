@@ -17,6 +17,7 @@ public class LearnServiceActivity extends AppCompatActivity {
     private Button btnStopService;
     private Button btnBindService;
     private Button btnUnbindService;
+    private Button btnStartForegroundService;
 
     private MyService.DownloadBinder downloadBinder;
 
@@ -47,6 +48,8 @@ public class LearnServiceActivity extends AppCompatActivity {
         btnBindService.setOnClickListener(onClickListener);
         btnUnbindService = (Button)findViewById(R.id.button_unbind_service);
         btnUnbindService.setOnClickListener(onClickListener);
+        btnStartForegroundService = (Button)findViewById(R.id.button_start_foreground_service);
+        btnStartForegroundService.setOnClickListener(onClickListener);
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener(){
@@ -71,6 +74,12 @@ public class LearnServiceActivity extends AppCompatActivity {
 
                 case R.id.button_unbind_service:
                     unbindService(connection);        // 解绑服务
+                    break;
+
+                case R.id.button_start_foreground_service:
+                    Intent startForegroundIntent = new Intent(LearnServiceActivity.this
+                            ,ForegroundService.class);
+                    startService(startForegroundIntent);   // 开启前台服务
                     break;
 
                 default:

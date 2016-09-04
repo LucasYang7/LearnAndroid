@@ -45,4 +45,13 @@
         android:layout_alignRight="@+id/button_stop_service"
         android:layout_alignEnd="@+id/button_stop_service"
         android:layout_marginTop="48dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Foreground Service"
+        android:id="@+id/button_start_foreground_service"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/button_unbind_service"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
