@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.example.yangzhe.bottomtablayout.BottomTabLayoutActivity;
 import com.example.yangzhe.jsoup.JsoupActivity;
 import com.example.yangzhe.learnasynctask.LearnAsyncTaskActivity;
+import com.example.yangzhe.learnbroadcastreceiver.LearnBroadcastReceiverActivity;
 import com.example.yangzhe.learndatabase.MyDatabaseHelper;
 import com.example.yangzhe.learnhandler.HanderMessageActivity;
 import com.example.yangzhe.learnhandler.HandlerActivity;
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoJsoup.setOnClickListener(click);
         Button btnGotoLearnServiceActivity = (Button)findViewById(R.id.buttonGotoLearnServiceActivity);
         btnGotoLearnServiceActivity.setOnClickListener(click);
+        Button btnGotoLearnBroadcastReceiverActivity = (Button)findViewById(R.id.buttonGotoLearnBroadcastReceiverActivity);
+        btnGotoLearnBroadcastReceiverActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener(){
@@ -158,6 +161,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.buttonGotoLearnServiceActivity:
                     gotoOtherActivity(LearnServiceActivity.class);
+                    break;
+
+                case R.id.buttonGotoLearnBroadcastReceiverActivity:
+                    gotoOtherActivity(LearnBroadcastReceiverActivity.class);
                     break;
 
                 default:

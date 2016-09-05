@@ -131,6 +131,12 @@
                 android:text="goto learn service activity"
                 android:id="@+id/buttonGotoLearnServiceActivity"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="goto learn broadcast receiver activity"
+                android:id="@+id/buttonGotoLearnBroadcastReceiverActivity"/>
+
         </LinearLayout>
     </ScrollView>
 
