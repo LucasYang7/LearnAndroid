@@ -81,7 +81,13 @@
         </receiver>
 
         <receiver android:name="com.example.yangzhe.learnbroadcastreceiver.MyBroadcastReceiver">
-            <intent-filter>
+            <intent-filter android:priority="100">
+                <action android:name="com.example.yangzhe.intent.action.MY_BROADCAST"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="com.example.yangzhe.learnbroadcastreceiver.AnotherBroadcastReceiver">
+            <intent-filter android:priority="99">
                 <action android:name="com.example.yangzhe.intent.action.MY_BROADCAST"/>
             </intent-filter>
         </receiver>

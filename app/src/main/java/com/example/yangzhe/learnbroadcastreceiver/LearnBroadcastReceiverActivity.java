@@ -19,6 +19,7 @@ public class LearnBroadcastReceiverActivity extends AppCompatActivity {
     private IntentFilter intentFilter;
     private NetworkChangeReceiver networkChangeReceiver;
     private Button btnSendNormalBroadcast;
+    private Button btnSendOrderedBroadcast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,14 @@ public class LearnBroadcastReceiverActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setAction("com.example.yangzhe.intent.action.MY_BROADCAST");
                 sendBroadcast(intent);        // 发送普通的广播
+            }
+        });
+        btnSendOrderedBroadcast = (Button)findViewById(R.id.buttonSendOrderedBroadcast);
+        btnSendOrderedBroadcast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent("com.example.yangzhe.intent.action.MY_BROADCAST");
+                sendOrderedBroadcast(intent,null);
             }
         });
     }
