@@ -14,9 +14,10 @@
         android:layout_height="wrap_content"
         android:text="Start Service"
         android:id="@+id/button_start_service"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="21dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/button_stop_service"
+        android:layout_alignEnd="@+id/button_stop_service" />
 
     <Button
         android:layout_width="wrap_content"
@@ -32,26 +33,37 @@
         android:layout_height="wrap_content"
         android:text="bind service"
         android:id="@+id/button_bind_service"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/button_stop_service"
         android:layout_alignLeft="@+id/button_stop_service"
-        android:layout_alignStart="@+id/button_stop_service" />
+        android:layout_alignStart="@+id/button_stop_service"
+        android:layout_marginTop="38dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="unbind service"
         android:id="@+id/button_unbind_service"
+        android:layout_marginTop="27dp"
         android:layout_below="@+id/button_bind_service"
         android:layout_alignRight="@+id/button_stop_service"
-        android:layout_alignEnd="@+id/button_stop_service"
-        android:layout_marginTop="48dp" />
+        android:layout_alignEnd="@+id/button_stop_service" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start Foreground Service"
         android:id="@+id/button_start_foreground_service"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/button_unbind_service"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start intentservice"
+        android:id="@+id/button_start_intent_service"
+        android:layout_below="@+id/button_start_foreground_service"
+        android:layout_alignLeft="@+id/button_start_service"
+        android:layout_alignStart="@+id/button_start_service"
+        android:layout_marginTop="42dp" />
 </RelativeLayout>

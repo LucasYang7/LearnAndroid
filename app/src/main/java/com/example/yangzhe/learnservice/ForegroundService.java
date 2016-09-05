@@ -4,6 +4,8 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -33,9 +35,12 @@ public class ForegroundService extends Service {
                 .setContentTitle("This is title")
                 .setContentText("This is content")
                 .setContentIntent(pendingIntent)    // 当通知栏被点击时所执行的PendingIntent
-                .setSmallIcon(R.drawable.weixin)
+                .setSmallIcon(R.drawable.weixin_selected)
                 .setWhen(System.currentTimeMillis());
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.weixin_selected);
+        builder.setLargeIcon(bitmap);
         Notification notification = builder.getNotification();
+        notification.contentView.setImageViewResource(android.R.id.icon,R.drawable.weixin_selected);
         startForeground(1,notification);           // 启动前台服务 Service
         Log.e(TAG,"ForegroundService onCreate executed");
     }

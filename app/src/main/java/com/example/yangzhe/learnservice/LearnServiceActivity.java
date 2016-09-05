@@ -6,6 +6,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,11 +14,14 @@ import com.example.yangzhe.learnactivity.R;
 
 public class LearnServiceActivity extends AppCompatActivity {
 
+    private String TAG = "LearnServiceActivity";
+
     private Button btnStartService;
     private Button btnStopService;
     private Button btnBindService;
     private Button btnUnbindService;
     private Button btnStartForegroundService;
+    private Button btnStartIntentService;
 
     private MyService.DownloadBinder downloadBinder;
 
@@ -50,6 +54,8 @@ public class LearnServiceActivity extends AppCompatActivity {
         btnUnbindService.setOnClickListener(onClickListener);
         btnStartForegroundService = (Button)findViewById(R.id.button_start_foreground_service);
         btnStartForegroundService.setOnClickListener(onClickListener);
+        btnStartIntentService = (Button)findViewById(R.id.button_start_intent_service);
+        btnStartIntentService.setOnClickListener(onClickListener);
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener(){
@@ -80,6 +86,15 @@ public class LearnServiceActivity extends AppCompatActivity {
                     Intent startForegroundIntent = new Intent(LearnServiceActivity.this
                             ,ForegroundService.class);
                     startService(startForegroundIntent);   // 开启前台服务
+                    break;
+
+                case R.id.button_start_intent_service:
+                    Intent startIntentService = new Intent(LearnServiceActivity.this
+                            ,MyIntentService.class);
+                    startIntentService.putExtra("intentServiceString",
+                            "This is from LearnServiceActivity...");
+                    startService(startIntentService);
+                    Log.e(TAG,"LearnServiceActivity Thread id is " + Thread.currentThread().getId());
                     break;
 
                 default:
