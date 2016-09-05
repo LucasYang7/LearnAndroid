@@ -8,6 +8,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.yangzhe.learnactivity.R;
@@ -16,6 +18,7 @@ public class LearnBroadcastReceiverActivity extends AppCompatActivity {
 
     private IntentFilter intentFilter;
     private NetworkChangeReceiver networkChangeReceiver;
+    private Button btnSendNormalBroadcast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,15 @@ public class LearnBroadcastReceiverActivity extends AppCompatActivity {
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         networkChangeReceiver = new NetworkChangeReceiver();
         registerReceiver(networkChangeReceiver,intentFilter); // 动态注册广播接收器
+        btnSendNormalBroadcast = (Button)findViewById(R.id.buttonSendNormalBroadscast);
+        btnSendNormalBroadcast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction("com.example.yangzhe.intent.action.MY_BROADCAST");
+                sendBroadcast(intent);        // 发送普通的广播
+            }
+        });
     }
 
     @Override

@@ -79,6 +79,12 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+
+        <receiver android:name="com.example.yangzhe.learnbroadcastreceiver.MyBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.example.yangzhe.intent.action.MY_BROADCAST"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
