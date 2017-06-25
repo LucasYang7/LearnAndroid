@@ -137,6 +137,12 @@
                 android:text="goto learn broadcast receiver activity"
                 android:id="@+id/buttonGotoLearnBroadcastReceiverActivity"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Custome TextView Activity"
+                android:id="@+id/buttonGotoLearnCustomeViewActivity"/>
+
         </LinearLayout>
     </ScrollView>
 

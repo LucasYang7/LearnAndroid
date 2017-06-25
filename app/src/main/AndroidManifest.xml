@@ -71,26 +71,26 @@
             android:name="com.example.yangzhe.learnservice.MyIntentService"
             android:exported="false" />
 
-        <activity android:name="com.example.yangzhe.learnbroadcastreceiver.LearnBroadcastReceiverActivity"></activity>
+        <activity android:name="com.example.yangzhe.learnbroadcastreceiver.LearnBroadcastReceiverActivity" />
 
-        <!--静态注册接收开机广播的BroadcastReceiver-->
+        <!-- 静态注册接收开机广播的BroadcastReceiver -->
         <receiver android:name="com.example.yangzhe.learnbroadcastreceiver.BootCompleteReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
         <receiver android:name="com.example.yangzhe.learnbroadcastreceiver.MyBroadcastReceiver">
             <intent-filter android:priority="100">
-                <action android:name="com.example.yangzhe.intent.action.MY_BROADCAST"/>
+                <action android:name="com.example.yangzhe.intent.action.MY_BROADCAST" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.example.yangzhe.learnbroadcastreceiver.AnotherBroadcastReceiver">
+            <intent-filter android:priority="99">
+                <action android:name="com.example.yangzhe.intent.action.MY_BROADCAST" />
             </intent-filter>
         </receiver>
 
-        <receiver android:name="com.example.yangzhe.learnbroadcastreceiver.AnotherBroadcastReceiver">
-            <intent-filter android:priority="99">
-                <action android:name="com.example.yangzhe.intent.action.MY_BROADCAST"/>
-            </intent-filter>
-        </receiver>
+        <activity android:name="com.example.yangzhe.custome.view.LearnCustomeViewActivity"></activity>
     </application>
 
 </manifest>
