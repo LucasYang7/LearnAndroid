@@ -26,6 +26,7 @@ import com.example.yangzhe.learnpicasso.PicassoActivity;
 import com.example.yangzhe.learnretrofit.RetrofitActivity;
 import com.example.yangzhe.learnrxjava.LearnRxJavaActivity;
 import com.example.yangzhe.learnservice.LearnServiceActivity;
+import com.example.yangzhe.optimization.layout.ViewStubActivity;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivityLifeCycle";
@@ -35,55 +36,57 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e(TAG,"this is onCreate()!");
+        Log.e(TAG, "this is onCreate()!");
         setContentView(R.layout.activity_main);
-        Button btnDialog = (Button)findViewById(R.id.buttonShowDialog);
+        Button btnDialog = (Button) findViewById(R.id.buttonShowDialog);
         btnDialog.setOnClickListener(click);
-        Button btnShowDialogActivity = (Button)findViewById(R.id.buttonShowDialogActivity);
+        Button btnShowDialogActivity = (Button) findViewById(R.id.buttonShowDialogActivity);
         btnShowDialogActivity.setOnClickListener(click);
-        Button btnGotoHandlerActivity = (Button)findViewById(R.id.buttonGotoHandlerActivity);
+        Button btnGotoHandlerActivity = (Button) findViewById(R.id.buttonGotoHandlerActivity);
         btnGotoHandlerActivity.setOnClickListener(click);
-        Button btnGotoHandlerMessageActivity = (Button)findViewById(R.id.buttonGotoHandlerMessageActivity);
+        Button btnGotoHandlerMessageActivity = (Button) findViewById(R.id.buttonGotoHandlerMessageActivity);
         btnGotoHandlerMessageActivity.setOnClickListener(click);
-        Button btnGotoFragmentActivity = (Button)findViewById(R.id.buttonGotoFragmentActivity);
+        Button btnGotoFragmentActivity = (Button) findViewById(R.id.buttonGotoFragmentActivity);
         btnGotoFragmentActivity.setOnClickListener(click);
-        Button btnGotoImageLoaderActivity = (Button)findViewById(R.id.buttonGotoImageLoaderActivity);
+        Button btnGotoImageLoaderActivity = (Button) findViewById(R.id.buttonGotoImageLoaderActivity);
         btnGotoImageLoaderActivity.setOnClickListener(click);
-        Button btnGotoStaggeredGridActivity = (Button)findViewById(R.id.buttonGotoStaggeredGridActivity);
+        Button btnGotoStaggeredGridActivity = (Button) findViewById(R.id.buttonGotoStaggeredGridActivity);
         btnGotoStaggeredGridActivity.setOnClickListener(click);
-        Button btnGotoLearnJsonActivity = (Button)findViewById(R.id.buttonGotoLearnJsonActivity);
+        Button btnGotoLearnJsonActivity = (Button) findViewById(R.id.buttonGotoLearnJsonActivity);
         btnGotoLearnJsonActivity.setOnClickListener(click);
-        Button btnGotoTestAsyncTaskActivity = (Button)findViewById(R.id.buttonGotoTestAsyncTaskActivity);
+        Button btnGotoTestAsyncTaskActivity = (Button) findViewById(R.id.buttonGotoTestAsyncTaskActivity);
         btnGotoTestAsyncTaskActivity.setOnClickListener(click);
-        Button btnGotoLearnSwipeRefreshActivity = (Button)findViewById(R.id.buttonGotoLearnSwipeRefreshActivity);
+        Button btnGotoLearnSwipeRefreshActivity = (Button) findViewById(R.id.buttonGotoLearnSwipeRefreshActivity);
         btnGotoLearnSwipeRefreshActivity.setOnClickListener(click);
-        Button btnGotoLearnRxJavaActivity = (Button)findViewById(R.id.buttonGotoLearnRxJava);
+        Button btnGotoLearnRxJavaActivity = (Button) findViewById(R.id.buttonGotoLearnRxJava);
         btnGotoLearnRxJavaActivity.setOnClickListener(click);
-        Button btnGotoLearnPicassoActivity = (Button)findViewById(R.id.buttonGotoLearnPicassoActivity);
+        Button btnGotoLearnPicassoActivity = (Button) findViewById(R.id.buttonGotoLearnPicassoActivity);
         btnGotoLearnPicassoActivity.setOnClickListener(click);
-        Button btnGotoLearnRetrofitActivity = (Button)findViewById(R.id.buttonGotoLearnRetrofit);
+        Button btnGotoLearnRetrofitActivity = (Button) findViewById(R.id.buttonGotoLearnRetrofit);
         btnGotoLearnRetrofitActivity.setOnClickListener(click);
-        Button btnGotoLearnPhotoView = (Button)findViewById(R.id.buttonGotoLearnPhotoView);
+        Button btnGotoLearnPhotoView = (Button) findViewById(R.id.buttonGotoLearnPhotoView);
         btnGotoLearnPhotoView.setOnClickListener(click);
-        Button btnGotoLearnPhotoViewAndToolbar = (Button)findViewById(R.id.buttonGotoLearnPhotoViewAndToolbar);
+        Button btnGotoLearnPhotoViewAndToolbar = (Button) findViewById(R.id.buttonGotoLearnPhotoViewAndToolbar);
         btnGotoLearnPhotoViewAndToolbar.setOnClickListener(click);
-        Button btnGotoBottomTabLayout = (Button)findViewById(R.id.buttonGotoBottomTabLayoutActivity);
+        Button btnGotoBottomTabLayout = (Button) findViewById(R.id.buttonGotoBottomTabLayoutActivity);
         btnGotoBottomTabLayout.setOnClickListener(click);
-        Button btnGotoJsoup = (Button)findViewById(R.id.buttonGotoJsoupActivity);
+        Button btnGotoJsoup = (Button) findViewById(R.id.buttonGotoJsoupActivity);
         btnGotoJsoup.setOnClickListener(click);
-        Button btnGotoLearnServiceActivity = (Button)findViewById(R.id.buttonGotoLearnServiceActivity);
+        Button btnGotoLearnServiceActivity = (Button) findViewById(R.id.buttonGotoLearnServiceActivity);
         btnGotoLearnServiceActivity.setOnClickListener(click);
-        Button btnGotoLearnBroadcastReceiverActivity = (Button)findViewById(R.id.buttonGotoLearnBroadcastReceiverActivity);
+        Button btnGotoLearnBroadcastReceiverActivity = (Button) findViewById(R.id.buttonGotoLearnBroadcastReceiverActivity);
         btnGotoLearnBroadcastReceiverActivity.setOnClickListener(click);
-        Button btnGotoLearnCustomeViewActivity = (Button)findViewById(R.id.buttonGotoLearnCustomeViewActivity);
+        Button btnGotoLearnCustomeViewActivity = (Button) findViewById(R.id.buttonGotoLearnCustomeViewActivity);
         btnGotoLearnCustomeViewActivity.setOnClickListener(click);
+        Button btnGotoLearnViewStubActivity = (Button) findViewById(R.id.buttonGotoLearnViewStubActivity);
+        btnGotoLearnViewStubActivity.setOnClickListener(click);
     }
 
-    private View.OnClickListener click = new View.OnClickListener(){
+    private View.OnClickListener click = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
-            switch(v.getId()){
+            switch (v.getId()) {
                 case R.id.buttonShowDialog:
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setTitle("dialog").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -92,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                             dialog.cancel();
                         }
                     });
-                    AlertDialog alertDialog =  builder.create();
+                    AlertDialog alertDialog = builder.create();
                     alertDialog.show();
                     break;
 
@@ -149,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.buttonGotoLearnPhotoViewAndToolbar:
-                    dbHelper = new MyDatabaseHelper(MainActivity.this,"MeituFavorites.db",null,1);   // create database
+                    dbHelper = new MyDatabaseHelper(MainActivity.this, "MeituFavorites.db", null, 1);   // create database
                     dbHelper.getWritableDatabase();
                     gotoOtherActivity(PhotoViewActivity.class);
                     break;
@@ -174,6 +177,10 @@ public class MainActivity extends AppCompatActivity {
                     gotoOtherActivity(LearnCustomeViewActivity.class);
                     break;
 
+                case R.id.buttonGotoLearnViewStubActivity:
+                    gotoOtherActivity(ViewStubActivity.class);
+                    break;
+
                 default:
                     break;
             }
@@ -182,11 +189,11 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * goto other activity
-     * */
-    private void gotoOtherActivity(Class clazz){
+     */
+    private void gotoOtherActivity(Class clazz) {
         Bundle bundle = new Bundle();
-        bundle.putString("WhichActivity","MainActivity");
-        Intent intent = new Intent(MainActivity.this,clazz);
+        bundle.putString("WhichActivity", "MainActivity");
+        Intent intent = new Intent(MainActivity.this, clazz);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -194,36 +201,36 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.e(TAG,"this is onStop()!");
+        Log.e(TAG, "this is onStop()!");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.e(TAG,"this is onDestroy()!");
+        Log.e(TAG, "this is onDestroy()!");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.e(TAG,"this is onStart()!");
+        Log.e(TAG, "this is onStart()!");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e(TAG,"this is onResume()!");
+        Log.e(TAG, "this is onResume()!");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e(TAG,"this is onPause()!");
+        Log.e(TAG, "this is onPause()!");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.e(TAG,"this is onRestart()!");
+        Log.e(TAG, "this is onRestart()!");
     }
 }

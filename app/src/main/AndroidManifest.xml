@@ -90,7 +90,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name="com.example.yangzhe.custome.view.LearnCustomeViewActivity"></activity>
+        <activity android:name="com.example.yangzhe.custome.view.LearnCustomeViewActivity" />
+        <activity android:name="com.example.yangzhe.optimization.layout.ViewStubActivity"></activity>
     </application>
 
 </manifest>
