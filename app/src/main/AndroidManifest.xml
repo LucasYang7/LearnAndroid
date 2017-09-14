@@ -91,7 +91,8 @@
         </receiver>
 
         <activity android:name="com.example.yangzhe.custome.view.LearnCustomeViewActivity" />
-        <activity android:name="com.example.yangzhe.optimization.layout.ViewStubActivity"></activity>
+        <activity android:name="com.example.yangzhe.optimization.layout.ViewStubActivity" />
+        <activity android:name="com.example.yangzhe.custome.view.CanvasViewActivity"></activity>
     </application>
 
 </manifest>

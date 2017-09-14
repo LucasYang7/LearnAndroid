@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.yangzhe.bottomtablayout.BottomTabLayoutActivity;
+import com.example.yangzhe.custome.view.CanvasViewActivity;
 import com.example.yangzhe.custome.view.LearnCustomeViewActivity;
 import com.example.yangzhe.jsoup.JsoupActivity;
 import com.example.yangzhe.learnasynctask.LearnAsyncTaskActivity;
@@ -80,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoLearnCustomeViewActivity.setOnClickListener(click);
         Button btnGotoLearnViewStubActivity = (Button) findViewById(R.id.buttonGotoLearnViewStubActivity);
         btnGotoLearnViewStubActivity.setOnClickListener(click);
+        Button btnGotoCanvasActivity = (Button) findViewById(R.id.buttonGotoLearnCanvasActivity);
+        btnGotoCanvasActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener() {
@@ -179,6 +182,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.buttonGotoLearnViewStubActivity:
                     gotoOtherActivity(ViewStubActivity.class);
+                    break;
+
+                case R.id.buttonGotoLearnCanvasActivity:
+                    gotoOtherActivity(CanvasViewActivity.class);
                     break;
 
                 default:

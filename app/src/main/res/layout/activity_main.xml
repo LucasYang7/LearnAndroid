@@ -150,6 +150,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Goto View Stub Activity" />
+
+            <Button
+                android:id="@+id/buttonGotoLearnCanvasActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Canvas Activity" />
         </LinearLayout>
     </ScrollView>
 
