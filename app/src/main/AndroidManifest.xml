@@ -92,7 +92,8 @@
 
         <activity android:name="com.example.yangzhe.custome.view.LearnCustomeViewActivity" />
         <activity android:name="com.example.yangzhe.optimization.layout.ViewStubActivity" />
-        <activity android:name="com.example.yangzhe.custome.view.CanvasViewActivity"></activity>
+        <activity android:name="com.example.yangzhe.custome.view.CanvasViewActivity" />
+        <activity android:name="com.example.yangzhe.learnthreadpool.TestThreadPoolActivity"></activity>
     </application>
 
 </manifest>

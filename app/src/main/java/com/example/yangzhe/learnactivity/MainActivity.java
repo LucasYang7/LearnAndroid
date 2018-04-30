@@ -27,6 +27,7 @@ import com.example.yangzhe.learnpicasso.PicassoActivity;
 import com.example.yangzhe.learnretrofit.RetrofitActivity;
 import com.example.yangzhe.learnrxjava.LearnRxJavaActivity;
 import com.example.yangzhe.learnservice.LearnServiceActivity;
+import com.example.yangzhe.learnthreadpool.TestThreadPoolActivity;
 import com.example.yangzhe.optimization.layout.ViewStubActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -83,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoLearnViewStubActivity.setOnClickListener(click);
         Button btnGotoCanvasActivity = (Button) findViewById(R.id.buttonGotoLearnCanvasActivity);
         btnGotoCanvasActivity.setOnClickListener(click);
+        Button btnGotoLearnThreadPool = (Button) findViewById(R.id.btnGotoLearnThreadPool);
+        btnGotoLearnThreadPool.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener() {
@@ -188,6 +191,9 @@ public class MainActivity extends AppCompatActivity {
                     gotoOtherActivity(CanvasViewActivity.class);
                     break;
 
+                case R.id.btnGotoLearnThreadPool:
+                    gotoOtherActivity(TestThreadPoolActivity.class);
+                    break;
                 default:
                     break;
             }
