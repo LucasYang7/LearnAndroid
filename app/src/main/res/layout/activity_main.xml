@@ -162,6 +162,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Goto Thread Pool" />
+
+            <Button
+                android:id="@+id/btnGotoTestPropertyAnimation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto PropertyAnimation" />
         </LinearLayout>
     </ScrollView>
 

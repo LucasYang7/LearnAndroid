@@ -29,6 +29,7 @@ import com.example.yangzhe.learnrxjava.LearnRxJavaActivity;
 import com.example.yangzhe.learnservice.LearnServiceActivity;
 import com.example.yangzhe.learnthreadpool.TestThreadPoolActivity;
 import com.example.yangzhe.optimization.layout.ViewStubActivity;
+import com.example.yangzhe.testAnimation.TestObjectAnimatorActivity;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivityLifeCycle";
@@ -86,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoCanvasActivity.setOnClickListener(click);
         Button btnGotoLearnThreadPool = (Button) findViewById(R.id.btnGotoLearnThreadPool);
         btnGotoLearnThreadPool.setOnClickListener(click);
+        Button btnGotoTestPropertyAnimation = (Button) findViewById(R.id.btnGotoTestPropertyAnimation);
+        btnGotoTestPropertyAnimation.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener() {
@@ -194,6 +197,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btnGotoLearnThreadPool:
                     gotoOtherActivity(TestThreadPoolActivity.class);
                     break;
+
+                case R.id.btnGotoTestPropertyAnimation:
+                    gotoOtherActivity(TestObjectAnimatorActivity.class);
                 default:
                     break;
             }
