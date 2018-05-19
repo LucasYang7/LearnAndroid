@@ -28,6 +28,7 @@ import com.example.yangzhe.learnretrofit.RetrofitActivity;
 import com.example.yangzhe.learnrxjava.LearnRxJavaActivity;
 import com.example.yangzhe.learnservice.LearnServiceActivity;
 import com.example.yangzhe.learnthreadpool.TestThreadPoolActivity;
+import com.example.yangzhe.learntouchevent.LearnTouchEventActivity;
 import com.example.yangzhe.optimization.layout.ViewStubActivity;
 import com.example.yangzhe.testAnimation.TestObjectAnimatorActivity;
 
@@ -89,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoLearnThreadPool.setOnClickListener(click);
         Button btnGotoTestPropertyAnimation = (Button) findViewById(R.id.btnGotoTestPropertyAnimation);
         btnGotoTestPropertyAnimation.setOnClickListener(click);
+        Button btnGotoLearnTouchEvent = (Button) findViewById(R.id.btnGotoLearnTouchEvent);
+        btnGotoLearnTouchEvent.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener() {
@@ -200,6 +203,11 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.btnGotoTestPropertyAnimation:
                     gotoOtherActivity(TestObjectAnimatorActivity.class);
+                    break;
+
+                case R.id.btnGotoLearnTouchEvent:
+                    gotoOtherActivity(LearnTouchEventActivity.class);
+                    break;
                 default:
                     break;
             }
