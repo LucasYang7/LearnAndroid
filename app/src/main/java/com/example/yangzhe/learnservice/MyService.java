@@ -22,6 +22,12 @@ public class MyService extends Service {
         return mDownloadBinder;
     }
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        Log.e(TAG,"onUnbind");
+        return super.onUnbind(intent);
+    }
+
     // 创建服务时调用该方法
     @Override
     public void onCreate() {

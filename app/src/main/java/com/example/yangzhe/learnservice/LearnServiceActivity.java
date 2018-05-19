@@ -32,11 +32,12 @@ public class LearnServiceActivity extends AppCompatActivity {
             // 调用MyService.DownloadBinder中的回调方法
             downloadBinder.startDownload();
             downloadBinder.getProgress();
+            Log.e(TAG,"onServiceConnected ComponentName is " + name);
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
+            Log.e(TAG,"onServiceDisconnected ComponentName is " + name);
         }
     };
 
