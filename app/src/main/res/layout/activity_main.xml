@@ -164,10 +164,16 @@
                 android:text="Goto Thread Pool" />
 
             <Button
-                android:id="@+id/btnGotoTestPropertyAnimation"
+                android:id="@+id/btnGotoTestObjectAnimator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Goto PropertyAnimation" />
+                android:text="Goto Object Animator" />
+
+            <Button
+                android:id="@+id/btnGotoTestValueAnimator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Value Animator" />
 
             <Button
                 android:id="@+id/btnGotoLearnTouchEvent"

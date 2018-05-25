@@ -31,6 +31,7 @@ import com.example.yangzhe.learnthreadpool.TestThreadPoolActivity;
 import com.example.yangzhe.learntouchevent.LearnTouchEventActivity;
 import com.example.yangzhe.optimization.layout.ViewStubActivity;
 import com.example.yangzhe.testAnimation.TestObjectAnimatorActivity;
+import com.example.yangzhe.testAnimation.value.animator.TestValueAnimatorActivity;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivityLifeCycle";
@@ -88,8 +89,10 @@ public class MainActivity extends AppCompatActivity {
         btnGotoCanvasActivity.setOnClickListener(click);
         Button btnGotoLearnThreadPool = (Button) findViewById(R.id.btnGotoLearnThreadPool);
         btnGotoLearnThreadPool.setOnClickListener(click);
-        Button btnGotoTestPropertyAnimation = (Button) findViewById(R.id.btnGotoTestPropertyAnimation);
-        btnGotoTestPropertyAnimation.setOnClickListener(click);
+        Button btnGotoTestObjectAnimator = (Button) findViewById(R.id.btnGotoTestObjectAnimator);
+        btnGotoTestObjectAnimator.setOnClickListener(click);
+        Button btnGotoTestValueAnimator = (Button) findViewById(R.id.btnGotoTestValueAnimator);
+        btnGotoTestValueAnimator.setOnClickListener(click);
         Button btnGotoLearnTouchEvent = (Button) findViewById(R.id.btnGotoLearnTouchEvent);
         btnGotoLearnTouchEvent.setOnClickListener(click);
     }
@@ -201,8 +204,12 @@ public class MainActivity extends AppCompatActivity {
                     gotoOtherActivity(TestThreadPoolActivity.class);
                     break;
 
-                case R.id.btnGotoTestPropertyAnimation:
+                case R.id.btnGotoTestObjectAnimator:
                     gotoOtherActivity(TestObjectAnimatorActivity.class);
+                    break;
+
+                case R.id.btnGotoTestValueAnimator:
+                    gotoOtherActivity(TestValueAnimatorActivity.class);
                     break;
 
                 case R.id.btnGotoLearnTouchEvent:
