@@ -15,6 +15,7 @@ public class HandlerActivity extends AppCompatActivity {
     private Button btnPostDelayRunnable;
     private Button btnRunOnUiThread;
     private Button btnPostRunnableFromSubHandler;
+    private Button btnTestThreadLocal;
     private TextView textViewShowMessage;
     private Handler handler = new Handler(); //Handler is Thread Local Storage,its life cycle is different from Activity
     private SubHandler subHandler = new SubHandler();
@@ -34,6 +35,9 @@ public class HandlerActivity extends AppCompatActivity {
 
         btnPostRunnableFromSubHandler = (Button)findViewById(R.id.buttonPostRunnableFromSubHandler);
         btnPostRunnableFromSubHandler.setOnClickListener(click);
+
+        btnTestThreadLocal = (Button)findViewById(R.id.buttonTestThreadLocal);
+        btnTestThreadLocal.setOnClickListener(click);
 
         textViewShowMessage = (TextView)findViewById(R.id.textViewShowRunnable);
         runOnUiThread(new Runnable() {
@@ -115,6 +119,9 @@ public class HandlerActivity extends AppCompatActivity {
                             });
                         }
                     }).start();
+                    break;
+                case R.id.buttonTestThreadLocal:
+                    new ThreadLocalTest().printLog();
                     break;
                 default:
                     break;
