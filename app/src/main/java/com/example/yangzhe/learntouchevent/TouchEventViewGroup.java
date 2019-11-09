@@ -99,6 +99,7 @@ public class TouchEventViewGroup extends ViewGroup {
             // 而针对这次事件,子View会收到一个ACTION_CANCEL
             return true;
         }
+//        return true;
     }
 
     @Override
@@ -121,6 +122,7 @@ public class TouchEventViewGroup extends ViewGroup {
         }
         // 这里的super.onTouchEvent(ev)调用的是View中的onTouchEvent方法,
         // 所以其也是根据View的clickable等属性来决定onTouchEvent方法的返回值
+        // 如果当前View不消费ACTION_DOWN事件，那么同一事件序列中的其它事件也不会再交给它处理，而是交给该View的父View去处理。
         return super.onTouchEvent(ev);
 //        return true;   // 强制消费MotionEvent
     }
