@@ -32,6 +32,7 @@ import com.example.yangzhe.learntouchevent.LearnTouchEventActivity;
 import com.example.yangzhe.optimization.layout.ViewStubActivity;
 import com.example.yangzhe.testAnimation.TestObjectAnimatorActivity;
 import com.example.yangzhe.testAnimation.value.animator.TestValueAnimatorActivity;
+import com.example.yangzhe.testUpdateViewPager.TestUpdateViewPagerActivity;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivityLifeCycle";
@@ -95,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoTestValueAnimator.setOnClickListener(click);
         Button btnGotoLearnTouchEvent = (Button) findViewById(R.id.btnGotoLearnTouchEvent);
         btnGotoLearnTouchEvent.setOnClickListener(click);
+        Button btnGotoTestViewPager = (Button) findViewById(R.id.btnGotoTestViewPager);
+        btnGotoTestViewPager.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener() {
@@ -215,6 +218,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btnGotoLearnTouchEvent:
                     gotoOtherActivity(LearnTouchEventActivity.class);
                     break;
+
+                case R.id.btnGotoTestViewPager:
+                    gotoOtherActivity(TestUpdateViewPagerActivity.class);
+                    break;
+
                 default:
                     break;
             }

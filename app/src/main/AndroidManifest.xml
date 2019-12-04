@@ -97,6 +97,7 @@
         <activity android:name="com.example.yangzhe.testAnimation.TestObjectAnimatorActivity" />
         <activity android:name="com.example.yangzhe.learntouchevent.LearnTouchEventActivity" />
         <activity android:name="com.example.yangzhe.testAnimation.value.animator.TestValueAnimatorActivity" />
+        <activity android:name="com.example.yangzhe.testUpdateViewPager.TestUpdateViewPagerActivity"/>
     </application>
 
 </manifest>
