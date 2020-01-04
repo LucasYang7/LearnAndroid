@@ -15,6 +15,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name="com.example.yangzhe.learnipc.RemoteProcessActivity"
+            android:process=":remote">
+
+        </activity>
+        <activity android:name="com.example.yangzhe.learnipc.MainProcessActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -71,9 +77,7 @@
             android:name="com.example.yangzhe.learnservice.MyIntentService"
             android:exported="false" />
 
-        <activity android:name="com.example.yangzhe.learnbroadcastreceiver.LearnBroadcastReceiverActivity" />
-
-        <!-- 静态注册接收开机广播的BroadcastReceiver -->
+        <activity android:name="com.example.yangzhe.learnbroadcastreceiver.LearnBroadcastReceiverActivity" /> <!-- 静态注册接收开机广播的BroadcastReceiver -->
         <receiver android:name="com.example.yangzhe.learnbroadcastreceiver.BootCompleteReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -97,7 +101,7 @@
         <activity android:name="com.example.yangzhe.testAnimation.TestObjectAnimatorActivity" />
         <activity android:name="com.example.yangzhe.learntouchevent.LearnTouchEventActivity" />
         <activity android:name="com.example.yangzhe.testAnimation.value.animator.TestValueAnimatorActivity" />
-        <activity android:name="com.example.yangzhe.testUpdateViewPager.TestUpdateViewPagerActivity"/>
+        <activity android:name="com.example.yangzhe.testUpdateViewPager.TestUpdateViewPagerActivity" />
     </application>
 
 </manifest>

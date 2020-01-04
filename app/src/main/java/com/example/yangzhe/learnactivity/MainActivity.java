@@ -18,6 +18,7 @@ import com.example.yangzhe.learnbroadcastreceiver.LearnBroadcastReceiverActivity
 import com.example.yangzhe.learndatabase.MyDatabaseHelper;
 import com.example.yangzhe.learnhandler.HanderMessageActivity;
 import com.example.yangzhe.learnhandler.HandlerActivity;
+import com.example.yangzhe.learnipc.MainProcessActivity;
 import com.example.yangzhe.learnjson.LearnJsonActivity;
 import com.example.yangzhe.learnlayout.LearnSwipeRereshLayoutActivity;
 import com.example.yangzhe.learnlayout.StaggeredGridLayoutActivity;
@@ -98,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoLearnTouchEvent.setOnClickListener(click);
         Button btnGotoTestViewPager = (Button) findViewById(R.id.btnGotoTestViewPager);
         btnGotoTestViewPager.setOnClickListener(click);
+        Button btnGotoMainProcessActivity = (Button) findViewById(R.id.btnGotoMainProcessActivity);
+        btnGotoMainProcessActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener() {
@@ -221,6 +224,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.btnGotoTestViewPager:
                     gotoOtherActivity(TestUpdateViewPagerActivity.class);
+                    break;
+
+                case R.id.btnGotoMainProcessActivity:
+                    gotoOtherActivity(MainProcessActivity.class);
                     break;
 
                 default:
