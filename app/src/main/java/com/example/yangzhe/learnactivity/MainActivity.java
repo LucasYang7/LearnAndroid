@@ -26,6 +26,7 @@ import com.example.yangzhe.learnphotoview.PhotoViewActivity;
 import com.example.yangzhe.learnphotoview.ViewPagerActivity;
 import com.example.yangzhe.learnpicasso.PicassoActivity;
 import com.example.yangzhe.learnretrofit.RetrofitActivity;
+import com.example.yangzhe.learnrxjava.LearnRxJava2Activity;
 import com.example.yangzhe.learnrxjava.LearnRxJavaActivity;
 import com.example.yangzhe.learnservice.LearnServiceActivity;
 import com.example.yangzhe.learnthreadpool.TestThreadPoolActivity;
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.buttonGotoLearnRxJava:
-                    gotoOtherActivity(LearnRxJavaActivity.class);
+                    gotoOtherActivity(LearnRxJava2Activity.class);
                     break;
 
                 case R.id.buttonGotoLearnPicassoActivity:
