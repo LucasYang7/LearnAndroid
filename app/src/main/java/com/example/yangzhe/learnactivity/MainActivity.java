@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.yangzhe.bottomtablayout.BottomTabLayoutActivity;
+import com.example.yangzhe.coroutine.LearnCoroutineActivity;
 import com.example.yangzhe.custome.view.CanvasViewActivity;
 import com.example.yangzhe.custome.view.LearnCustomeViewActivity;
 import com.example.yangzhe.jsoup.JsoupActivity;
@@ -102,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoTestViewPager.setOnClickListener(click);
         Button btnGotoMainProcessActivity = (Button) findViewById(R.id.btnGotoMainProcessActivity);
         btnGotoMainProcessActivity.setOnClickListener(click);
+        Button btnGotoCoroutineActivity = (Button) findViewById(R.id.btnGotoCoroutineActivity);
+        btnGotoCoroutineActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener() {
@@ -229,6 +232,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.btnGotoMainProcessActivity:
                     gotoOtherActivity(MainProcessActivity.class);
+                    break;
+
+                case R.id.btnGotoCoroutineActivity:
+                    gotoOtherActivity(LearnCoroutineActivity.class);
                     break;
 
                 default:

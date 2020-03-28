@@ -192,6 +192,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Goto Test MainProcessActivity" />
+
+            <Button
+                android:id="@+id/btnGotoCoroutineActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Test CoroutineActivity" />
         </LinearLayout>
     </ScrollView>
 
