@@ -7,23 +7,41 @@ import com.example.yangzhe.learnactivity.R
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class LearnCoroutineActivity : AppCompatActivity() {
-    companion object{
+    companion object {
         const val TAG = "LearnCoroutineActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_learn_coroutine)
-        testCoroutine()
+        Log.d(TAG, "onCreate() start")
+//        testCoroutine()
+        testRunBlocking()
+        Log.d(TAG, "onCreate() end")
     }
 
-    fun testCoroutine() {
+    private fun testCoroutine() {
         GlobalScope.launch {
-            delay(1000)
-            Log.d(TAG, "coroutine world!")
+            // 只会阻塞协程，不会阻塞线程
+            delay(1000L)
+            Log.d(TAG, "testCoroutine()!")
         }
-        Log.d(TAG, "hello")
     }
+
+    private fun testRunBlocking() {
+        // runBlocking会阻塞主线程
+        return runBlocking {
+            GlobalScope.launch {
+                // 协程启动后延迟1000ms打印Log
+                delay(1000L)
+                Log.d(TAG, "testRunBlocking()")
+            }
+            // 主线程延迟2000ms
+            delay(2000L)
+        }
+    }
+
 }
