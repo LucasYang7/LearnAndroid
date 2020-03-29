@@ -4,10 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.yangzhe.learnactivity.R
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 class LearnCoroutineActivity : AppCompatActivity() {
     companion object {
@@ -19,7 +16,8 @@ class LearnCoroutineActivity : AppCompatActivity() {
         setContentView(R.layout.activity_learn_coroutine)
         Log.d(TAG, "onCreate() start")
 //        testCoroutine()
-        testRunBlocking()
+//        testRunBlocking()
+        testCoroutineScope()
         Log.d(TAG, "onCreate() end")
     }
 
@@ -44,4 +42,21 @@ class LearnCoroutineActivity : AppCompatActivity() {
         }
     }
 
+    private fun testCoroutineScope() = runBlocking {
+        launch {  // 启动一个协程
+            delay(200L)
+            Log.d(TAG, "Task from runBlocking launch.")
+        }
+
+        coroutineScope {  // 创建一个协程作用域
+            launch {  // 启动一个协程
+                delay(500L)
+                Log.d(TAG, "Task from coroutineScope launch.")
+            }
+            delay(100L)
+            Log.d(TAG, "Task from coroutineScope.")  // 因为在coroutineScope中，这一行会在内嵌的协程结束前输出
+        }
+
+        Log.d(TAG, "testCoroutineScope() is over.")  // 因为在runBlocking中，这一行会等上面两个协程都执行完成后才输出。
+    }
 }
