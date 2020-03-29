@@ -17,7 +17,8 @@ class LearnCoroutineActivity : AppCompatActivity() {
         Log.d(TAG, "onCreate() start")
 //        testCoroutine()
 //        testRunBlocking()
-        testCoroutineScope()
+//        testCoroutineScope()
+        launchCoroutines()
         Log.d(TAG, "onCreate() end")
     }
 
@@ -65,5 +66,21 @@ class LearnCoroutineActivity : AppCompatActivity() {
     private suspend fun printCoroutineScopeLaunch() {
         delay(500L)
         Log.d(TAG, "Task from coroutineScope launch, this is in suspend function.")
+    }
+
+    /**
+     * 开启100000个协程
+     * */
+    private fun launchCoroutines() {
+        runBlocking {
+            var index = 0
+            // 协程是一种轻量级线程，开启很多个协程也不会造成内存溢出问题
+            repeat(100_000) {
+                launch {
+                    delay(1000L)
+                    Log.d(TAG, "index = ${index++}.")
+                }
+            }
+        }
     }
 }
