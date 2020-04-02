@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.yangzhe.learnactivity.R
 import kotlinx.coroutines.*
+import kotlin.system.measureTimeMillis
 
 class LearnCoroutineActivity : AppCompatActivity() {
     companion object {
@@ -18,8 +19,16 @@ class LearnCoroutineActivity : AppCompatActivity() {
 //        testCoroutine()
 //        testRunBlocking()
 //        testCoroutineScope()
-        launchCoroutines()
+//        launchCoroutines()
         Log.d(TAG, "onCreate() end")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume() start")
+        Log.d(TAG, "cost time is ${getCostTime()}.")
+        Log.d(TAG, "async cost time is ${getAsyncCostTime()}.")
+        Log.d(TAG, "onResume() end")
     }
 
     private fun testCoroutine() {
@@ -44,13 +53,16 @@ class LearnCoroutineActivity : AppCompatActivity() {
     }
 
     private fun testCoroutineScope() = runBlocking {
-        launch {  // 启动一个协程
+        launch {
+            // 启动一个协程
             delay(200L)
             Log.d(TAG, "Task from runBlocking launch.")
         }
 
-        coroutineScope {  // 创建一个协程作用域
-            launch {  // 启动一个协程
+        coroutineScope {
+            // 创建一个协程作用域
+            launch {
+                // 启动一个协程
                 printCoroutineScopeLaunch()
             }
             delay(100L)
@@ -81,6 +93,37 @@ class LearnCoroutineActivity : AppCompatActivity() {
                     Log.d(TAG, "index = ${index++}.")
                 }
             }
+        }
+    }
+
+    // 模拟一个耗时1秒的操作并且返回结果
+    suspend fun doSomethingUsefulOne(): Int {
+        delay(1000L)
+        return 100
+    }
+
+    // 模拟一个耗时1秒的操作并且返回结果
+    suspend fun doSomethingUsefulTwo(): Int {
+        delay(2000L)
+        return 200
+    }
+
+    // 获取协程执行的耗时
+    fun getCostTime() = measureTimeMillis {
+        runBlocking {
+            val one = doSomethingUsefulOne()
+            val two = doSomethingUsefulTwo()
+            Log.d(TAG, "result is $one + $two =  ${one + two}")
+        }
+    }
+
+    // 获取协程异步执行的耗时
+    fun getAsyncCostTime() = measureTimeMillis {
+        runBlocking {
+            // one和two可以同时执行
+            val one = async { doSomethingUsefulOne() }
+            val two = async { doSomethingUsefulTwo() }
+            Log.d(TAG, "result is ${one.await()} + ${two.await()} =  ${one.await() + two.await()}")
         }
     }
 }
