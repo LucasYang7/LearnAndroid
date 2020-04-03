@@ -2,17 +2,14 @@ package com.example.yangzhe.learnphotoview;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,15 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yangzhe.data.InternetImageData;
-import com.example.yangzhe.learnactivity.MainActivity;
 import com.example.yangzhe.learnactivity.R;
 import com.example.yangzhe.learndatabase.MyDatabaseHelper;
-import com.example.yangzhe.learnjson.ShowMeinvActivity;
-import com.example.yangzhe.learnpicasso.PicassoActivity;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 

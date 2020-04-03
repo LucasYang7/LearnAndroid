@@ -1,7 +1,7 @@
 package com.example.yangzhe.learnactivity;
 
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
 
 public class ImageLoaderActivity extends AppCompatActivity {
 

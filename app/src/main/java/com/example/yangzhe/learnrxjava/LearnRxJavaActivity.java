@@ -1,11 +1,9 @@
 package com.example.yangzhe.learnrxjava;
 
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yangzhe.data.StudentDataForRxJava;
@@ -13,7 +11,6 @@ import com.example.yangzhe.learnactivity.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 
 import rx.Observable;
 import rx.Observer;

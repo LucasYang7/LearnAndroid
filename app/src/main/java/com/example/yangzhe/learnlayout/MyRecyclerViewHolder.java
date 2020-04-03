@@ -1,12 +1,11 @@
 package com.example.yangzhe.learnlayout;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.yangzhe.learnactivity.R;
-import com.example.yangzhe.widget.RatioImageView;
 
 /**
  * Created by yangzhe on 16-6-16.

@@ -2,8 +2,8 @@ package com.example.yangzhe.testUpdateViewPager
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +29,7 @@ class TestUpdateViewPagerActivity : Activity(), OnClickListener {
         btn_delete.setOnClickListener(this@TestUpdateViewPagerActivity)
         tv_items_size.text = "数据列表长度：${mAdapter.count}."
         view_pager_test.adapter = mAdapter
-        view_pager_test.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        view_pager_test.addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
 
@@ -71,7 +71,7 @@ class TestUpdateViewPagerActivity : Activity(), OnClickListener {
     /**
      * ViewPager适配器
      * */
-    class SimpleViewPagerAdapter : PagerAdapter() {
+    class SimpleViewPagerAdapter : androidx.viewpager.widget.PagerAdapter() {
         val itemList = ArrayList<String>().apply {
             add("0")
             add("1")
