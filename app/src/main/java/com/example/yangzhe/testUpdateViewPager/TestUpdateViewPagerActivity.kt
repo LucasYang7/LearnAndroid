@@ -85,15 +85,15 @@ class TestUpdateViewPagerActivity : Activity(), OnClickListener {
             add("9")
         }
 
-        override fun isViewFromObject(view: View?, item: Any?): Boolean {
-            return view == item as? View
+        override fun isViewFromObject(view: View, item: Any): Boolean {
+            return view == item as View
         }
 
         override fun getCount(): Int {
             return itemList.size
         }
 
-        override fun instantiateItem(container: ViewGroup?, position: Int): Any {
+        override fun instantiateItem(container: ViewGroup, position: Int): Any {
             val itemView = LayoutInflater.from(container?.context).inflate(R.layout.item_view_pager, container, false)
             val itemText: TextView? = itemView.findViewById(R.id.tv_item_view_pager) as? TextView
             itemText?.text = itemList[position]
@@ -103,7 +103,7 @@ class TestUpdateViewPagerActivity : Activity(), OnClickListener {
             return itemView
         }
 
-        override fun destroyItem(container: ViewGroup?, position: Int, item: Any?) {
+        override fun destroyItem(container: ViewGroup, position: Int, item: Any) {
             val itemView = item as? View
             container?.removeView(itemView)
             Log.d(TAG, "destroyItem ${itemView?.tag as? Int}.")
@@ -115,7 +115,7 @@ class TestUpdateViewPagerActivity : Activity(), OnClickListener {
          * 只遍历以当前元素为中心，偏移位置在offscreenPageLimit内的元素
          * 调用次数 == 2 × offscreenPageLimit + 1
          * */
-        override fun getItemPosition(`object`: Any?): Int {
+        override fun getItemPosition(`object`: Any): Int {
             val itemView = `object` as? View
             Log.d(TAG, "getItemPosition ${itemView?.tag as? Int}.")
             // POSITION_NONE能实刷新ViewPager中的位置信息，但是会调用2 × offscreenPageLimit + 1 次 destroyItem和instantiateItem
