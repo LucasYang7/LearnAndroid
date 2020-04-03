@@ -3,6 +3,8 @@ package com.example.yangzhe.learnactivity;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.multidex.MultiDex;
+
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -16,6 +18,12 @@ public class LearnAndroidApplication extends Application{
     public void onCreate() {
         super.onCreate();
         initImageLoader(getApplicationContext());
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     public static void initImageLoader(Context context){
