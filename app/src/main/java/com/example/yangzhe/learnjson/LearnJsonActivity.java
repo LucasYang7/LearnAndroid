@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class LearnJsonActivity extends AppCompatActivity {
     public final String TAG = "LearnJsonActivity";
     private TextView textViewShowPictureJson;
-    private Button btnGotoShowMeinvActivity;
+    private static Button btnGotoShowMeinvActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
