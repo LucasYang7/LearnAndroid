@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class LearnJsonActivity extends AppCompatActivity {
     public final String TAG = "LearnJsonActivity";
-    private static TextView textViewShowPictureJson;
+    private TextView textViewShowPictureJson;
     private Button btnGotoShowMeinvActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +98,7 @@ public class LearnJsonActivity extends AppCompatActivity {
                         Log.e(TAG,picUrl);
                         stringBuilder = stringBuilder.append(picUrl + "\n");
                     }
-                    textViewShowPictureJson.setText(stringBuilder.toString());
+                    textViewShowPictureJson.setText("json is " + stringBuilder.toString());
                     break;
 
                 default:
