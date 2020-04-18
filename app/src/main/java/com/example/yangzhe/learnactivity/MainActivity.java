@@ -14,6 +14,7 @@ import com.example.yangzhe.coroutine.LearnCoroutineActivity;
 import com.example.yangzhe.custome.view.CanvasViewActivity;
 import com.example.yangzhe.custome.view.LearnCustomeViewActivity;
 import com.example.yangzhe.jsoup.JsoupActivity;
+import com.example.yangzhe.learn.mvc.controller.MvcSampleActivity;
 import com.example.yangzhe.learnasynctask.LearnAsyncTaskActivity;
 import com.example.yangzhe.learnbroadcastreceiver.LearnBroadcastReceiverActivity;
 import com.example.yangzhe.learndatabase.MyDatabaseHelper;
@@ -104,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoMainProcessActivity.setOnClickListener(click);
         Button btnGotoCoroutineActivity = (Button) findViewById(R.id.btnGotoCoroutineActivity);
         btnGotoCoroutineActivity.setOnClickListener(click);
+        Button btnGotoMVCActivity = (Button) findViewById(R.id.btnGotoMVCActivity);
+        btnGotoMVCActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener() {
@@ -235,6 +238,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.btnGotoCoroutineActivity:
                     gotoOtherActivity(LearnCoroutineActivity.class);
+                    break;
+
+                case R.id.btnGotoMVCActivity:
+                    gotoOtherActivity(MvcSampleActivity.class);
                     break;
 
                 default:

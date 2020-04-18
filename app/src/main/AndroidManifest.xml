@@ -15,7 +15,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.yangzhe.coroutine.LearnCoroutineActivity"></activity>
+        <activity android:name="com.example.yangzhe.learn.mvc.controller.MvcSampleActivity"></activity>
+        <activity android:name="com.example.yangzhe.coroutine.LearnCoroutineActivity" />
         <activity android:name="com.example.yangzhe.learnrxjava.LearnRxJava2Activity" />
         <activity
             android:name="com.example.yangzhe.learnipc.RemoteProcessActivity"

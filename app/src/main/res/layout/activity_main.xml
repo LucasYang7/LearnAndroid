@@ -198,6 +198,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Goto Test CoroutineActivity" />
+
+            <Button
+                android:id="@+id/btnGotoMVCActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Test MVC Activity" />
         </LinearLayout>
     </ScrollView>
 
