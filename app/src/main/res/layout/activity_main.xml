@@ -204,6 +204,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Goto Test MVC Activity" />
+
+            <Button
+                android:id="@+id/btnGotoMVPActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Test MVP Activity" />
         </LinearLayout>
     </ScrollView>
 
