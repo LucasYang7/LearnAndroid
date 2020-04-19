@@ -15,7 +15,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.yangzhe.learn.mvp.MvpSampleActivity"></activity>
+        <service
+            android:name="com.example.yangzhe.learnipc.aidl.BookMangerService"
+            android:process=":remote" />
+
+        <activity android:name="com.example.yangzhe.learn.mvp.MvpSampleActivity" />
         <activity android:name="com.example.yangzhe.learn.mvc.controller.MvcSampleActivity" />
         <activity android:name="com.example.yangzhe.coroutine.LearnCoroutineActivity" />
         <activity android:name="com.example.yangzhe.learnrxjava.LearnRxJava2Activity" />
