@@ -7,6 +7,10 @@
         <variable
             name="title"
             type="java.lang.String" />
+
+        <variable
+            name="user"
+            type="com.example.yangzhe.learn.mvvm.model.ObserableUser" />
     </data>
 
     <!--这里对应布局的根节点-->
@@ -20,6 +24,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{title}" />
+
+        <TextView
+            android:id="@+id/tv_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.firstName}" />
+
+        <TextView
+            android:id="@+id/tv_last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.lastName}" />
+
+        <TextView
+            android:id="@+id/tv_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Integer.toString(user.age)}" />
+
+        <Button
+            android:id="@+id/btn_add_age"
+            android:text="@string/add_one_age"
+            android:onClick="onClickAddAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </layout>

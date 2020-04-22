@@ -19,4 +19,6 @@
 
     <string name="menu_cancel_favor">取消收藏</string>
     <string name="menu_favor">已经收藏</string>
+
+    <string name="add_one_age">+1s</string>
 </resources>
