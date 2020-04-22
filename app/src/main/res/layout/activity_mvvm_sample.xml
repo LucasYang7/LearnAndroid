@@ -11,6 +11,10 @@
         <variable
             name="user"
             type="com.example.yangzhe.learn.mvvm.model.ObserableUser" />
+
+        <variable
+            name="profileViewModel"
+            type="com.example.yangzhe.learn.mvvm.viewmodel.ProfileLiveDataViewModel" />
     </data>
 
     <!--这里对应布局的根节点-->
@@ -43,12 +47,25 @@
             android:layout_height="wrap_content"
             android:text="@{Integer.toString(user.age)}" />
 
+        <!--从DataBinding中读取出ProfileLiveDataViewModel，然后再从ProfileLiveDataViewModel中读取出LiveData-->
+        <TextView
+            android:id="@+id/tv_view_model_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Integer.toString(profileViewModel.liveDataAge)}" />
+
+        <!--liveDataAge收到刷新数据后，直接刷新该TextView-->
+        <TextView
+            android:id="@+id/tv_live_data_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/btn_add_age"
-            android:text="@string/add_one_age"
-            android:onClick="onClickAddAge"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:onClick="onClickAddAge"
+            android:text="@string/add_one_age" />
     </LinearLayout>
 
 </layout>
