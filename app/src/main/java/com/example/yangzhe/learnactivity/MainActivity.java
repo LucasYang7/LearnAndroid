@@ -16,6 +16,7 @@ import com.example.yangzhe.custome.view.LearnCustomeViewActivity;
 import com.example.yangzhe.jsoup.JsoupActivity;
 import com.example.yangzhe.learn.mvc.controller.MvcSampleActivity;
 import com.example.yangzhe.learn.mvp.MvpSampleActivity;
+import com.example.yangzhe.learn.mvvm.MvvmSampleActivity;
 import com.example.yangzhe.learnasynctask.LearnAsyncTaskActivity;
 import com.example.yangzhe.learnbroadcastreceiver.LearnBroadcastReceiverActivity;
 import com.example.yangzhe.learndatabase.MyDatabaseHelper;
@@ -110,6 +111,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoMVCActivity.setOnClickListener(click);
         Button btnGotoMVPActivity = (Button) findViewById(R.id.btnGotoMVPActivity);
         btnGotoMVPActivity.setOnClickListener(click);
+        Button btnGotoMVVMActivity = (Button) findViewById(R.id.btnGotoMVVMActivity);
+        btnGotoMVVMActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener() {
@@ -249,6 +252,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.btnGotoMVPActivity:
                     gotoOtherActivity(MvpSampleActivity.class);
+                    break;
+
+                case R.id.btnGotoMVVMActivity:
+                    gotoOtherActivity(MvvmSampleActivity.class);
                     break;
 
                 default:
