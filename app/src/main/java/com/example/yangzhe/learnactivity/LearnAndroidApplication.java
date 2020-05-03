@@ -2,9 +2,13 @@ package com.example.yangzhe.learnactivity;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
+import android.view.Choreographer;
 
+import androidx.annotation.RequiresApi;
 import androidx.multidex.MultiDex;
 
+import com.example.yangzhe.frame.callback.FPSFrameCallback;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -14,10 +18,12 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
  * Created by yangzhe on 16-6-16.
  */
 public class LearnAndroidApplication extends Application{
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onCreate() {
         super.onCreate();
         initImageLoader(getApplicationContext());
+        Choreographer.getInstance().postFrameCallback(new FPSFrameCallback(System.nanoTime()));
     }
 
     @Override
