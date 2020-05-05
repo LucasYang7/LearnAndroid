@@ -12,6 +12,7 @@ import androidx.multidex.MultiDex;
 import com.example.yangzhe.frame.callback.FPSFrameCallback;
 import com.example.yangzhe.helper.AppFrontBackHelper;
 import com.example.yangzhe.helper.IAppStatusListener;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -46,6 +47,7 @@ public class LearnAndroidApplication extends Application {
                 Log.d(TAG, "应用首次启动...");
             }
         });
+        Fresco.initialize(this);
     }
 
     @Override

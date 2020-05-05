@@ -13,6 +13,7 @@ import com.example.yangzhe.bottomtablayout.BottomTabLayoutActivity;
 import com.example.yangzhe.coroutine.LearnCoroutineActivity;
 import com.example.yangzhe.custome.view.CanvasViewActivity;
 import com.example.yangzhe.custome.view.LearnCustomeViewActivity;
+import com.example.yangzhe.fresco.FrescoActivity;
 import com.example.yangzhe.jsoup.JsoupActivity;
 import com.example.yangzhe.learn.mvc.controller.MvcSampleActivity;
 import com.example.yangzhe.learn.mvp.MvpSampleActivity;
@@ -113,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoMVPActivity.setOnClickListener(click);
         Button btnGotoMVVMActivity = (Button) findViewById(R.id.btnGotoMVVMActivity);
         btnGotoMVVMActivity.setOnClickListener(click);
+        Button btnGotoFrescoActivity = (Button) findViewById(R.id.btnGotoFrescoActivity);
+        btnGotoFrescoActivity.setOnClickListener(click);
     }
 
     private View.OnClickListener click = new View.OnClickListener() {
@@ -258,6 +261,9 @@ public class MainActivity extends AppCompatActivity {
                     gotoOtherActivity(MvvmSampleActivity.class);
                     break;
 
+                case R.id.btnGotoFrescoActivity:
+                    gotoOtherActivity(FrescoActivity.class);
+                    break;
                 default:
                     break;
             }
