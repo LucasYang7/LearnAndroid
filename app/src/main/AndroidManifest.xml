@@ -15,7 +15,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.yangzhe.fresco.FrescoActivity"></activity>
+        <activity android:name="com.example.yangzhe.learn.mvvm.MvvmSample2Activity"></activity>
+        <activity android:name="com.example.yangzhe.fresco.FrescoActivity" />
         <activity android:name="com.example.yangzhe.learn.mvvm.MvvmSampleActivity" />
 
         <service

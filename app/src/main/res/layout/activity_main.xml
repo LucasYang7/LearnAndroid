@@ -218,6 +218,12 @@
                 android:text="Goto Test MVVM Activity" />
 
             <Button
+                android:id="@+id/btnGotoMVVMActivity2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goto Test MVVM Activity 2" />
+
+            <Button
                 android:id="@+id/btnGotoFrescoActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -17,6 +17,7 @@ import com.example.yangzhe.fresco.FrescoActivity;
 import com.example.yangzhe.jsoup.JsoupActivity;
 import com.example.yangzhe.learn.mvc.controller.MvcSampleActivity;
 import com.example.yangzhe.learn.mvp.MvpSampleActivity;
+import com.example.yangzhe.learn.mvvm.MvvmSample2Activity;
 import com.example.yangzhe.learn.mvvm.MvvmSampleActivity;
 import com.example.yangzhe.learnasynctask.LearnAsyncTaskActivity;
 import com.example.yangzhe.learnbroadcastreceiver.LearnBroadcastReceiverActivity;
@@ -114,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
         btnGotoMVPActivity.setOnClickListener(click);
         Button btnGotoMVVMActivity = (Button) findViewById(R.id.btnGotoMVVMActivity);
         btnGotoMVVMActivity.setOnClickListener(click);
+        Button btnGotoMVVMActivity2 = (Button) findViewById(R.id.btnGotoMVVMActivity2);
+        btnGotoMVVMActivity2.setOnClickListener(click);
         Button btnGotoFrescoActivity = (Button) findViewById(R.id.btnGotoFrescoActivity);
         btnGotoFrescoActivity.setOnClickListener(click);
     }
@@ -259,6 +262,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.btnGotoMVVMActivity:
                     gotoOtherActivity(MvvmSampleActivity.class);
+                    break;
+
+                case R.id.btnGotoMVVMActivity2:
+                    gotoOtherActivity(MvvmSample2Activity.class);
                     break;
 
                 case R.id.btnGotoFrescoActivity:
